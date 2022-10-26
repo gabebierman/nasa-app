@@ -88,3 +88,22 @@ axios(config)
 .catch(function (error) {
   console.log(error);
 });
+
+
+NeoWs - asteroids LOOK FOR "is_potentially_hazardous_asteroid": !!!
+
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=PvNjityfqTES74gw4JZawK5fRkS6yb2lqFQQIvLQ',
+  headers: { }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
