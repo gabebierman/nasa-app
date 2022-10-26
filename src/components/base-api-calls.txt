@@ -1,0 +1,90 @@
+EPIC
+
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'https://api.nasa.gov/EPIC/api/?natural/date=&enhanced/date&api_key=PvNjityfqTES74gw4JZawK5fRkS6yb2lqFQQIvLQ',
+  headers: { }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+MARS ROVER Curiosity
+
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos/?api_key=PvNjityfqTES74gw4JZawK5fRkS6yb2lqFQQIvLQ&earth_date=',
+  headers: { }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+MARS ROVER Perseverance
+
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'https://api.nasa.gov/mars-photos/api/v1/rovers/Perseverance/photos/?api_key=PvNjityfqTES74gw4JZawK5fRkS6yb2lqFQQIvLQ&earth_date=',
+  headers: { }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+DONKI 
+
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'https://api.nasa.gov/DONKI/notifications?startDate=&endDate=&type=all&api_key=PvNjityfqTES74gw4JZawK5fRkS6yb2lqFQQIvLQ',
+  headers: { }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+
+EONET
+
+var axios = require('axios');
+
+var config = {
+  method: 'get',
+  url: 'https://eonet.gsfc.nasa.gov/api/v3/events?start=&end=&status=all',
+  headers: { }
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
