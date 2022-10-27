@@ -1,0 +1,3 @@
+export const spaceReducer ({
+    //switch
+}) 
