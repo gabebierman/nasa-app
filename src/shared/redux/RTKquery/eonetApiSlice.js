@@ -6,6 +6,7 @@ export const eonetApiSlice = createApi({
         getEarthEventData: builder.query({
             query: (startDate, endDate) =>
                 `events?start=${startDate}&end=${endDate}&status=all`,
+            // transformResponse: (events , ) => response.data,
         }),
     }),
 });
