@@ -110,11 +110,12 @@ axios(config)
 
 
 Exoplanets
+
 var axios = require('axios');
 
 var config = {
   method: 'get',
-  url: 'https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_rade,pl_masse+from+ps+where+pl_rade+<+=+1.8+and+pl_masse+>+0+and+releasedate+=+\'2015-06-17\'&format=json',
+  url: 'https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_rade,pl_masse,pl_refname+from+ps+where+pl_rade+<+=+1.8+and+pl_masse+>+0+and+releasedate+=+\'2015-06-17\'&format=json',
   headers: { }
 };
 
