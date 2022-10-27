@@ -1,9 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const eonetApiSlice = createApi({
-
     baseQuery: fetchBaseQuery({ baseUrl: "https://eonet.gsfc.nasa.gov/api/v3" }),
-
-})
-
-export const { useGetPostsQuery } = eonetApiSlice
+    endpoints: (builder) => ({
+        getEarthEventData: builder.query({
+            query: (startDate, endDate) =>
+                `events?start=${startDate}&end=${endDate}&status=all`,
+        }),
+    }),
+});
+export const { useGetEarthEventDataQuery } = eonetApiSlice;
