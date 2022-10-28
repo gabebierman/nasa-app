@@ -23,7 +23,7 @@ export const nasaApiSlice = createApi({
             transformResponse: (response, meta, arg) => {
                 return response.near_earth_objects[arg].map((response) => ({
                     neo_id: response.neo_reference_id,
-                    dangerous: response.is_potentially_hazardous_asteroid,
+                    hazardous: response.is_potentially_hazardous_asteroid,
                 }));
             },
         }),
