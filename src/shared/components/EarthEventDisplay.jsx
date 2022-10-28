@@ -1,26 +1,17 @@
-//"Earth" page
-//EONET
-
 import React from "react";
-import { useGetEarthEventDataQuery } from "../redux/RTKquery/eonetApiSlice";
 
-function EONETDisplay() {
-    const { data } = useGetEarthEventDataQuery("2022-02-22");
+const EONETDisplay = ({ event_id, event_title, event_type, event_link }) => {
     return (
-        <div>
-            EONETDisplay
+        <>
+            EONET Display
             <div>
-                {data
-                    ? ((
-                          <>
-                              <p>something here</p>
-                          </>
-                      ),
-                      console.log(data))
-                    : null}
+                <p>Event id: {event_id}</p>
+                <p>Event title: {event_title}</p>
+                <p>Event Type: {event_type}</p>
+                <a href={event_link}>Learn More</a>
             </div>
-        </div>
+        </>
     );
-}
+};
 
 export default EONETDisplay;

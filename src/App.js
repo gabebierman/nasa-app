@@ -1,11 +1,12 @@
 import "./App.css";
+import EarthPage from "./Components/EarthPage";
 import EONETDisplay from "./shared/components/EarthEventDisplay";
 
 function App() {
     return (
         <div className="App">
             <div>
-                <EONETDisplay />
+                <EarthPage />
             </div>
         </div>
     );
