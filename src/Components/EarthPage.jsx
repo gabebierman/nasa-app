@@ -63,11 +63,13 @@ function EarthPage({ setEarthPicture, searchResults }) {
             {neoError && <h3>NEO error</h3>}
             {neoSuccess &&
                 neoData.map((val) => (
-                    <NeoWsDisplay key={val.neo_id} id={val.neo_id} dangerous={val.dangerous} />
+                    <NeoWsDisplay key={val.neo_id} id={val.neo_id} hazardous={val.hazardous} />
                 ))}
         </>
     );
 }
+
+//isFavorite={favorites.some((fave) => fave.gif_id === e.gif_id)}
 
 const mapDispatchToProps = (dispatch) => ({
     setSearchResults: (results) => dispatch(setEarthImage(results)),

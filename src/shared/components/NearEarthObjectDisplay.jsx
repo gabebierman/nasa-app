@@ -3,14 +3,20 @@
 
 import React from "react";
 
-function NeoWsDisplay({ dangerous, id }) {
+function NeoWsDisplay({ hazardous, id }) {
     return (
         <>
-            <div>NeoWsDisplay</div>
-            <div>
-                {id}
-                <p>{dangerous}</p>
-            </div>
+            {hazardous && (
+                <div>
+                    <p>
+                        Bonus! A Near Earth Object passed within hazardous distance of Earth on
+                        this day.
+                    </p>
+                    <a href={`https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=${id}`}>
+                        Learn More Here
+                    </a>
+                </div>
+            )}
         </>
     );
 }
