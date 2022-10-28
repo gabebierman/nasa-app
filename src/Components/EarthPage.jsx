@@ -1,12 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import EONETDisplay from "../shared/components/EarthEventDisplay";
-import { setEarthEvent, clearEarthEvent } from "../shared/redux/index";
 import { useGetEarthEventDataQuery } from "../shared/redux/RTKquery/eonetApiSlice";
-import { useGetEarthImageDataQuery } from "../shared/redux/RTKquery/nasaApiSlice";
+import {
+    nasaApiSlice,
+    useGetEarthImageDataQuery,
+    useGetEarthImageQuery,
+} from "../shared/redux/RTKquery/nasaApiSlice";
 import EPICDisplay from "../shared/components/EarthImageDisplay";
+// import getEarthImage from "../shared/functions/getEarthImage";
+// import { setEarthPicture } from "../shared/redux/store";
+import { setEarthImage } from "../shared/redux/slices/earthPictureSlice";
 
-function EarthPage() {
+function EarthPage({ setEarthPicture, searchResults }) {
     const {
         data: eventData,
         error: eventError,
@@ -17,7 +23,15 @@ function EarthPage() {
         error: imageDataError,
         isSuccess: imageDataSuccess,
     } = useGetEarthImageDataQuery("2022-02-22");
-    console.log(imageData);
+
+    // const { error } = useQuery(["getEarthImage", url], () => getEarthImage(), {
+    //     onSuccess: (data) => setEarthPicture(data),
+    //     enabled: !!url,
+    // });
+
+    const yyyy = "2022";
+    const mm = "02";
+    const dd = "22";
 
     return (
         <>
@@ -33,28 +47,22 @@ function EarthPage() {
                     />
                 ))}
             {imageDataError && <h2>Something went wrong.</h2>}
-            {imageDataSuccess && <EPICDisplay image_file={imageData[0].file_name} />}
+            {imageDataSuccess && (
+                <EPICDisplay
+                    image_file={imageData[0].file_name}
+                    image_link={`https://api.nasa.gov/EPIC/archive/natural/${yyyy}/${mm}/${dd}/png/${imageData[0].file_name}.png?api_key=${process.env.REACT_APP_NASA_API_KEY}`}
+                />
+            )}
         </>
     );
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    setSearchResults: (results) => dispatch(setEarthEvent(results)),
+    setSearchResults: (results) => dispatch(setEarthImage(results)),
 });
 
 const mapStateToProps = (state) => ({
-    searchResults: state.earthEvent,
+    searchResults: state.earthPicture,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EarthPage);
-
-//{
-//    !error && (
-//        <EONETDisplay
-//            event_id={event_id}
-//            event_link={event_link}
-//            event_title={event_title}
-//            event_type={event_type}
-//        />
-//    );
-//}

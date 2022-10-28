@@ -3,11 +3,11 @@ import { configureStore } from "@reduxjs/toolkit";
 // import { earthPictureDataReducer } from "./slices/earthPictureDataSlice";
 import { eonetApiSlice } from "./RTKquery/eonetApiSlice";
 import { nasaApiSlice } from "./RTKquery/nasaApiSlice";
+import { earthPictureReducer } from "./slices/earthPictureSlice";
 
 export default configureStore({
     reducer: {
-        // earthEvent: earthEventReducer,
-        // earthPictureData: earthPictureDataReducer,
+        earthPicture: earthPictureReducer,
         [eonetApiSlice.reducerPath]: eonetApiSlice.reducer,
         [nasaApiSlice.reducerPath]: nasaApiSlice.reducer,
     },
