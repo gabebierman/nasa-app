@@ -17,6 +17,16 @@ export const nasaApiSlice = createApi({
             query: ({ yyyy, mm, dd, fileName }) =>
                 `https://api.nasa.gov/EPIC/archive/natural/${yyyy}/${mm}/${dd}/png/${fileName}.png?api_key=${process.env.REACT_APP_NASA_API_KEY}`,
         }),
+        getNearEarthObject: builder.query({
+            query: (date) =>
+                `neo/rest/v1/feed?start_date=${date}&end_date=${date}&api_key=${process.env.REACT_APP_NASA_API_KEY}`,
+            transformResponse: (response, meta, arg) => {
+                return response.near_earth_objects[arg].map((response) => ({
+                    neo_id: response.neo_reference_id,
+                    dangerous: response.is_potentially_hazardous_asteroid,
+                }));
+            },
+        }),
     }),
 
     //         getMarsImageCuriosity: builder.query({
@@ -29,11 +39,7 @@ export const nasaApiSlice = createApi({
     //                 `mars-photos/api/v1/rovers/Perseverance/photos/?api_key=${process.env.REACT_APP_NASA_API_KEY}&earth_date=${date}`,
     //             // transformResponse: () => response.data,
     //         }),
-    //         getNearEarthObject: builder.query({
-    //             query: (date) =>
-    //                 `neo/rest/v1/feed?start_date=${date}&end_date=${date}&api_key=${process.env.REACT_APP_NASA_API_KEY}`,
-    //             // transformResponse: () => response.data,
-    //         }),
+
     //         getSpaceWeather: builder.query({
     //             query: (date) =>
     //                 `DONKI/notifications?startDate=${date}&endDate=${date}&type=all&api_key=${process.env.REACT_APP_NASA_API_KEY}`,
@@ -46,6 +52,6 @@ export const {
     useGetEarthImageQuery,
     //     useGetMarsImageCuriosityQuery,
     //     useGetMarsImagePerseveranceQuery,
-    //     useGetNearEarthObjectQuery,
+    useGetNearEarthObjectQuery,
     //     useGetSpaceWeatherQuery,
 } = nasaApiSlice;

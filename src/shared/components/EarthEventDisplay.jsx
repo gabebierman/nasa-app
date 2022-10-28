@@ -5,8 +5,8 @@ const EONETDisplay = ({ event_id, event_title, event_type, event_link }) => {
         <>
             EONET Display
             <div>
+                Event Title: {event_title}
                 <p>Event ID: {event_id}</p>
-                <p>Event Title: {event_title}</p>
                 <p>Event Type: {event_type}</p>
                 <a href={event_link}>Learn More</a>
             </div>
