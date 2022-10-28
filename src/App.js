@@ -1,14 +1,21 @@
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import EarthPage from "./Components/EarthPage";
-import EONETDisplay from "./shared/components/EarthEventDisplay";
+import MarsPage from "./Components/MarsPage";
+import SpacePage from "./Components/SpacePage";
+import Menu from "./Components/Menu";
 
 function App() {
     return (
-        <div className="App">
-            <div>
-                <EarthPage />
-            </div>
-        </div>
+        <Router>
+            <Menu />
+            <Routes>
+                <Route path="/earth" element=<EarthPage />></Route>
+                <Route path="/mars" element=<MarsPage />></Route>
+                <Route path="/space" element=<SpacePage />></Route>
+                <Route path="*" element={<Navigate to="/earth" />}></Route>
+            </Routes>
+        </Router>
     );
 }
 
