@@ -1,29 +1,39 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useQuery } from "@tanstack/react-query";
 import EONETDisplay from "../shared/components/EarthEventDisplay";
-import getEarthEvent from "../shared/functions/getEarthEventData";
 import { setEarthEvent, clearEarthEvent } from "../shared/redux/index";
+import { useGetEarthEventDataQuery } from "../shared/redux/RTKquery/eonetApiSlice";
+import { useGetEarthImageDataQuery } from "../shared/redux/RTKquery/nasaApiSlice";
+import EPICDisplay from "../shared/components/EarthImageDisplay";
 
-function EarthPage({ setSearchResults, searchResults }) {
-    const date = "2022-02-22";
-    const { error } = useQuery(["getEarthEvent", date], () => getEarthEvent(date), {
-        onSuccess: (data) => setSearchResults(data),
-        enabled: !!date,
-    });
+function EarthPage() {
+    const {
+        data: eventData,
+        error: eventError,
+        isSuccess: eventSuccess,
+    } = useGetEarthEventDataQuery("2022-02-22");
+    const {
+        data: imageData,
+        error: imageDataError,
+        isSuccess: imageDataSuccess,
+    } = useGetEarthImageDataQuery("2022-02-22");
+    console.log(imageData);
+
     return (
         <>
-            {error && <h2>Something went wrong.</h2>}
-            {!error &&
-                searchResults.map((val) => (
+            {eventError && <h2>Something went wrong.</h2>}
+            {eventSuccess &&
+                eventData.map((val) => (
                     <EONETDisplay
                         key={val.event_id}
-                        {...val}
+                        event_id={val.event_id}
+                        event_link={val.event_link}
                         event_title={val.event_title}
                         event_type={val.event_type}
-                        event_link={val.event_link}
                     />
                 ))}
+            {imageDataError && <h2>Something went wrong.</h2>}
+            {imageDataSuccess && <EPICDisplay image_file={imageData[0].file_name} />}
         </>
     );
 }
@@ -37,3 +47,14 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EarthPage);
+
+//{
+//    !error && (
+//        <EONETDisplay
+//            event_id={event_id}
+//            event_link={event_link}
+//            event_title={event_title}
+//            event_type={event_type}
+//        />
+//    );
+//}
