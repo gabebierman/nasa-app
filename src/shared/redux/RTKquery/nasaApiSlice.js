@@ -44,6 +44,7 @@ export const nasaApiSlice = createApi({
                 `mars-photos/api/v1/rovers/Perseverance/photos/?api_key=${process.env.REACT_APP_NASA_API_KEY}&earth_date=${date}`,
             transformResponse: (response) => {
                 return response.photos.map((response) => ({
+                    id: response.id,
                     img: response.img_src,
                     cam: response.camera.full_name,
                 }));
