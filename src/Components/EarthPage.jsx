@@ -28,6 +28,7 @@ function EarthPage({ setEarthPicture, searchResults }) {
         data: neoData,
         error: neoError,
         isSuccess: neoSuccess,
+        isLoading: neoLoading,
     } = useGetNearEarthObjectQuery("2022-02-22");
     console.log(neoData);
 
@@ -61,6 +62,7 @@ function EarthPage({ setEarthPicture, searchResults }) {
                 />
             )}
             {neoError && <h3>NEO error</h3>}
+            {neoLoading && <h3>Loading NEO data...</h3>}
             {neoSuccess &&
                 neoData.map((val) => (
                     <NeoWsDisplay key={val.neo_id} id={val.neo_id} hazardous={val.hazardous} />

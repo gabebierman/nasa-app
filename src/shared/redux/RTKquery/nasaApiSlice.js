@@ -38,7 +38,6 @@ export const nasaApiSlice = createApi({
                 }));
             },
         }),
-
         getMarsImagePerseverance: builder.query({
             query: (date) =>
                 `mars-photos/api/v1/rovers/Perseverance/photos/?api_key=${process.env.REACT_APP_NASA_API_KEY}&earth_date=${date}`,
@@ -50,12 +49,21 @@ export const nasaApiSlice = createApi({
                 }));
             },
         }),
-
-        //         getSpaceWeather: builder.query({
-        //             query: (date) =>
-        //                 `DONKI/notifications?startDate=${date}&endDate=${date}&type=all&api_key=${process.env.REACT_APP_NASA_API_KEY}`,
-        //             // transformResponse: () => response.data,
-        //         }),
+        getCME: builder.query({
+            query: (date) =>
+                `DONKI/CME?startDate=${date}&endDate=${date}&type=all&api_key=${process.env.REACT_APP_NASA_API_KEY}`,
+            transformResponse: (response) => {
+                return response.map((response) => ({
+                    id: response.activityID,
+                    note: response.note,
+                    link: response.link,
+                }));
+            },
+        }),
+        getAPOD: builder.query({
+            query: (date) =>
+                `planetary/apod?api_key=${process.env.REACT_APP_NASA_API_KEY}&date=${date}`,
+        }),
     }),
 });
 
@@ -65,5 +73,6 @@ export const {
     useGetMarsImageCuriosityQuery,
     useGetMarsImagePerseveranceQuery,
     useGetNearEarthObjectQuery,
-    //     useGetSpaceWeatherQuery,
+    useGetCMEQuery,
+    useGetAPODQuery,
 } = nasaApiSlice;
