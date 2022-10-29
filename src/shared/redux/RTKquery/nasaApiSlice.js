@@ -27,31 +27,42 @@ export const nasaApiSlice = createApi({
                 }));
             },
         }),
+        getMarsImageCuriosity: builder.query({
+            query: (date) =>
+                `mars-photos/api/v1/rovers/curiosity/photos/?api_key=${process.env.REACT_APP_NASA_API_KEY}&earth_date=${date}`,
+            transformResponse: (response) => {
+                return response.photos.map((response) => ({
+                    id: response.id,
+                    img: response.img_src,
+                    cam: response.camera.full_name,
+                }));
+            },
+        }),
+
+        getMarsImagePerseverance: builder.query({
+            query: (date) =>
+                `mars-photos/api/v1/rovers/Perseverance/photos/?api_key=${process.env.REACT_APP_NASA_API_KEY}&earth_date=${date}`,
+            transformResponse: (response) => {
+                return response.photos.map((response) => ({
+                    img: response.img_src,
+                    cam: response.camera.full_name,
+                }));
+            },
+        }),
+
+        //         getSpaceWeather: builder.query({
+        //             query: (date) =>
+        //                 `DONKI/notifications?startDate=${date}&endDate=${date}&type=all&api_key=${process.env.REACT_APP_NASA_API_KEY}`,
+        //             // transformResponse: () => response.data,
+        //         }),
     }),
-
-    //         getMarsImageCuriosity: builder.query({
-    //             query: (date) =>
-    //                 `mars-photos/api/v1/rovers/curiosity/photos/?api_key=${process.env.REACT_APP_NASA_API_KEY}&earth_date=${date}`,
-    //             // transformResponse: () => response.data,
-    //         }),
-    //         getMarsImagePerseverance: builder.query({
-    //             query: (date) =>
-    //                 `mars-photos/api/v1/rovers/Perseverance/photos/?api_key=${process.env.REACT_APP_NASA_API_KEY}&earth_date=${date}`,
-    //             // transformResponse: () => response.data,
-    //         }),
-
-    //         getSpaceWeather: builder.query({
-    //             query: (date) =>
-    //                 `DONKI/notifications?startDate=${date}&endDate=${date}&type=all&api_key=${process.env.REACT_APP_NASA_API_KEY}`,
-    //             // transformResponse: () => response.data,
-    //         }),
 });
 
 export const {
     useGetEarthImageDataQuery,
     useGetEarthImageQuery,
-    //     useGetMarsImageCuriosityQuery,
-    //     useGetMarsImagePerseveranceQuery,
+    useGetMarsImageCuriosityQuery,
+    useGetMarsImagePerseveranceQuery,
     useGetNearEarthObjectQuery,
     //     useGetSpaceWeatherQuery,
 } = nasaApiSlice;
