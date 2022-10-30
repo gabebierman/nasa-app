@@ -9,13 +9,16 @@ import {
 import EPICDisplay from "../shared/components/EarthImageDisplay";
 import { setEarthImage } from "../shared/redux/slices/earthPictureSlice";
 import NeoWsDisplay from "../shared/components/NearEarthObjectDisplay";
+import { date } from "../shared/redux/store";
+import { useSelector } from "react-redux";
 
 function EarthPage() {
+    const date = useSelector((state) => state.date);
     const {
         data: eventData,
         error: eventError,
         isSuccess: eventSuccess,
-    } = useGetEarthEventDataQuery("2022-02-22");
+    } = useGetEarthEventDataQuery(`${date}`);
     const {
         data: imageData,
         error: imageDataError,
@@ -27,7 +30,7 @@ function EarthPage() {
         error: neoError,
         isSuccess: neoSuccess,
         isLoading: neoLoading,
-    } = useGetNearEarthObjectQuery("2022-02-22");
+    } = useGetNearEarthObjectQuery(`${date}`);
 
     const yyyy = "2022";
     const mm = "02";
@@ -69,6 +72,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
     searchResults: state.earthPicture,
+    date: state.date,
+    dateDay: state.dateDay,
+    dateMonth: state.dateMonth,
+    dateYear: state.dateYear,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EarthPage);

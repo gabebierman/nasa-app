@@ -4,10 +4,12 @@ import { nasaApiSlice } from "./RTKquery/nasaApiSlice";
 import { earthPictureReducer } from "./slices/earthPictureSlice";
 import { solarFlareApiSlice } from "./RTKquery/solarFlareApiSlice";
 import { exoplanetApiSlice } from "./RTKquery/exoplanetApiSlice";
+import { dateReducer } from "./slices/dateSlice";
 
 export default configureStore({
     reducer: {
         earthPicture: earthPictureReducer,
+        date: dateReducer,
         [eonetApiSlice.reducerPath]: eonetApiSlice.reducer,
         [nasaApiSlice.reducerPath]: nasaApiSlice.reducer,
         [solarFlareApiSlice.reducerPath]: solarFlareApiSlice.reducer,
