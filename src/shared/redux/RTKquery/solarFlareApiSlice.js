@@ -4,8 +4,9 @@ export const solarFlareApiSlice = createApi({
     reducerPath: "solarFlareApiSlice",
     baseQuery: fetchBaseQuery({
         baseUrl: "https://kauai.ccmc.gsfc.nasa.gov/DONKI/WS/get/",
-        mode: "cors",
+        mode: "no-cors",
     }),
+
     endpoints: (builder) => ({
         getSolarFlare: builder.query({
             query: (date) => `FLR?startDate=${date}&endDate=${date}`,

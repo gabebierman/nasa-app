@@ -1,10 +1,8 @@
 import React from "react";
 import APODDisplay from "../shared/components/APODDisplay";
-import CMEDisplay from "../shared/components/CMEDisplay";
 import ExoPlanetDisplay from "../shared/components/ExoPlanetDisplay";
-import SolarFlareDisplay from "../shared/components/SolarFlareDisplay";
-import { useGetAPODQuery, useGetCMEQuery } from "../shared/redux/RTKquery/nasaApiSlice";
-import { useGetSolarFlareQuery } from "../shared/redux/RTKquery/solarFlareApiSlice";
+import { useGetExoPlanetQuery } from "../shared/redux/RTKquery/exoplanetApiSlice";
+import { useGetAPODQuery } from "../shared/redux/RTKquery/nasaApiSlice";
 
 function SpacePage() {
     const {
@@ -12,28 +10,23 @@ function SpacePage() {
         error: APODerror,
         isSuccess: APODsuccess,
     } = useGetAPODQuery("2022-02-22");
-    const {
-        data: CMEdata,
-        error: CMEerror,
-        isSuccess: CMEsuccess,
-    } = useGetCMEQuery("2022-02-22");
-
-    const {
-        data: SFdata,
-        error: SFerror,
-        isSuccess: SFsuccess,
-    } = useGetSolarFlareQuery("2022-02-20");
-
-    console.log(APODdata);
-    console.log(CMEdata);
-    console.log(SFdata);
+    // const {
+    //     data: EPdata,
+    //     error: EPerror,
+    //     isSuccess: EPsuccess,
+    //     isError,
+    // } = useGetExoPlanetQuery("2022-02-22");
+    // console.log(APODdata);
+    // console.log(EPdata);
+    // console.log(isError);
     return (
         <>
             <h3>SpacePage</h3>
-            <APODDisplay />
-            <CMEDisplay />
-            <SolarFlareDisplay />
-            <ExoPlanetDisplay />
+            <APODDisplay
+                explanation={APODdata.explanation}
+                title={APODdata.title}
+                url={APODdata.url}
+            />
         </>
     );
 }
