@@ -7,12 +7,10 @@ import {
     useGetNearEarthObjectQuery,
 } from "../shared/redux/RTKquery/nasaApiSlice";
 import EPICDisplay from "../shared/components/EarthImageDisplay";
-// import getEarthImage from "../shared/functions/getEarthImage";
-// import { setEarthPicture } from "../shared/redux/store";
 import { setEarthImage } from "../shared/redux/slices/earthPictureSlice";
 import NeoWsDisplay from "../shared/components/NearEarthObjectDisplay";
 
-function EarthPage({ setEarthPicture, searchResults }) {
+function EarthPage() {
     const {
         data: eventData,
         error: eventError,
@@ -30,12 +28,6 @@ function EarthPage({ setEarthPicture, searchResults }) {
         isSuccess: neoSuccess,
         isLoading: neoLoading,
     } = useGetNearEarthObjectQuery("2022-02-22");
-    console.log(neoData);
-
-    // const { error } = useQuery(["getEarthImage", url], () => getEarthImage(), {
-    //     onSuccess: (data) => setEarthPicture(data),
-    //     enabled: !!url,
-    // });
 
     const yyyy = "2022";
     const mm = "02";
@@ -70,8 +62,6 @@ function EarthPage({ setEarthPicture, searchResults }) {
         </>
     );
 }
-
-//isFavorite={favorites.some((fave) => fave.gif_id === e.gif_id)}
 
 const mapDispatchToProps = (dispatch) => ({
     setSearchResults: (results) => dispatch(setEarthImage(results)),

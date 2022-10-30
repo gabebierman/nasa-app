@@ -2,6 +2,7 @@
 //EPIC
 
 import React from "react";
+import { Img } from "../styled/Img";
 
 function EPICDisplay({ image_file, image_link }) {
     return (
@@ -9,7 +10,7 @@ function EPICDisplay({ image_file, image_link }) {
             EPICDisplay
             <p>File name of image - {image_file}</p>
             <p>img directly below here</p>
-            <img src={image_link}></img>
+            <Img src={image_link}></Img>
         </div>
     );
 }

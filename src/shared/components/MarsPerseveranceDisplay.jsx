@@ -1,10 +1,11 @@
 import React from "react";
+import { Img } from "../styled/Img";
 
 function MarsPerseveranceDisplay({ cam_name, link }) {
     return (
         <div>
             <p>{cam_name}</p>
-            <p>{link}</p>
+            <Img src={link}></Img>
         </div>
     );
 }

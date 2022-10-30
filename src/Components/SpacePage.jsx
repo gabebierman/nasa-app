@@ -1,7 +1,7 @@
 import React from "react";
 import APODDisplay from "../shared/components/APODDisplay";
-import ExoPlanetDisplay from "../shared/components/ExoPlanetDisplay";
-import { useGetExoPlanetQuery } from "../shared/redux/RTKquery/exoplanetApiSlice";
+// import ExoPlanetDisplay from "../shared/components/ExoPlanetDisplay";
+// import { useGetExoPlanetQuery } from "../shared/redux/RTKquery/exoplanetApiSlice";
 import { useGetAPODQuery } from "../shared/redux/RTKquery/nasaApiSlice";
 
 function SpacePage() {
@@ -10,6 +10,7 @@ function SpacePage() {
         error: APODerror,
         isSuccess: APODsuccess,
     } = useGetAPODQuery("2022-02-22");
+    const APODarray = [APODdata];
     // const {
     //     data: EPdata,
     //     error: EPerror,
@@ -17,16 +18,18 @@ function SpacePage() {
     //     isError,
     // } = useGetExoPlanetQuery("2022-02-22");
     // console.log(APODdata);
-    // console.log(EPdata);
-    // console.log(isError);
     return (
         <>
             <h3>SpacePage</h3>
-            <APODDisplay
-                explanation={APODdata.explanation}
-                title={APODdata.title}
-                url={APODdata.url}
-            />
+            {APODdata &&
+                APODarray.map((e) => (
+                    <APODDisplay
+                        key={e.date}
+                        explanation={e.explanation}
+                        title={e.title}
+                        url={e.url}
+                    />
+                ))}
         </>
     );
 }
