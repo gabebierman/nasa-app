@@ -14,6 +14,9 @@ import { useSelector } from "react-redux";
 
 function EarthPage() {
     const date = useSelector((state) => state.date);
+    const dateDay = useSelector((state) => state.dateDay);
+    const dateMonth = useSelector((state) => state.dateMonth);
+    const dateYear = useSelector((state) => state.dateYear);
     const {
         data: eventData,
         error: eventError,
@@ -23,7 +26,7 @@ function EarthPage() {
         data: imageData,
         error: imageDataError,
         isSuccess: imageDataSuccess,
-    } = useGetEarthImageDataQuery("2022-02-22");
+    } = useGetEarthImageDataQuery(`${date}`);
 
     const {
         data: neoData,
@@ -32,9 +35,9 @@ function EarthPage() {
         isLoading: neoLoading,
     } = useGetNearEarthObjectQuery(`${date}`);
 
-    const yyyy = "2022";
-    const mm = "02";
-    const dd = "22";
+    const yyyy = `${dateYear}`;
+    const mm = `${dateMonth}`;
+    const dd = `${dateDay}`;
 
     return (
         <>
@@ -50,7 +53,7 @@ function EarthPage() {
                     />
                 ))}
             {imageDataError && <h2>EPIC error</h2>}
-            {imageDataSuccess && (
+            {imageData && (
                 <EPICDisplay
                     image_file={imageData[0].file_name}
                     image_link={`https://api.nasa.gov/EPIC/archive/natural/${yyyy}/${mm}/${dd}/png/${imageData[0].file_name}.png?api_key=${process.env.REACT_APP_NASA_API_KEY}`}

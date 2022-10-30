@@ -1,8 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+function yesterday() {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    return yesterday;
+}
+
 export const dateSlice = createSlice({
     name: "date",
-    initialState: new Date().toJSON().slice(0, 10),
+    initialState: yesterday().toJSON().slice(0, 10),
     reducers: {
         setDate: (state, action) => action.payload,
         setDateDay: (state, action) => action.payload,
