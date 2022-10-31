@@ -31,7 +31,11 @@ function App() {
                     ></Route>
                     <Route
                         path="/mars"
-                        element={<PrivateRoute component={<MarsPage />} />}
+                        element={
+                            <ErrorBoundary>
+                                <PrivateRoute component={<MarsPage />} />
+                            </ErrorBoundary>
+                        }
                     ></Route>
                     <Route
                         path="/space"
