@@ -3,7 +3,7 @@
 import React from "react";
 
 function InsightDisplay() {
-    return <div>InsightDisplay</div>;
+    return <div></div>;
 }
 
 export default InsightDisplay;

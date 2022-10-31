@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { clearDate } from "../redux/slices/dateSlice";
 
-const Menu = ({ date, clearDate }) => {
+const Menu = ({ date }) => {
     return (
         <nav>
             {!date && <NavLink className="link" to="/landing"></NavLink>}
@@ -26,8 +26,6 @@ const Menu = ({ date, clearDate }) => {
         </nav>
     );
 };
-
-// export default Menu;
 
 const mapDispatchToProps = () => ({
     clearDate: () => clearDate(),

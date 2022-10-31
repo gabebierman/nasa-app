@@ -9,14 +9,10 @@ import {
 import EPICDisplay from "../shared/components/EarthImageDisplay";
 import { setEarthImage } from "../shared/redux/slices/earthPictureSlice";
 import NeoWsDisplay from "../shared/components/NearEarthObjectDisplay";
-import { date } from "../shared/redux/store";
 import { useSelector } from "react-redux";
 
 function EarthPage() {
     const date = useSelector((state) => state.date);
-    const dateDay = useSelector((state) => state.dateDay);
-    const dateMonth = useSelector((state) => state.dateMonth);
-    const dateYear = useSelector((state) => state.dateYear);
 
     const {
         data: eventData,

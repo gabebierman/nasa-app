@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 function LandingPage({ setDate, setDateYear }) {
     const [dateDay, setDateDay] = useState("");
     const [dateMonth, setDateMonth] = useState("");
-    // const [dateYear, setDateYear] = useState("");
 
     return (
         <>
@@ -52,16 +51,10 @@ function LandingPage({ setDate, setDateYear }) {
 
 const mapDispatchToProps = (dispatch) => ({
     setDate: (dateAll) => dispatch(setDate(dateAll)),
-    setDateDay: (dateDay) => dispatch(setDateDay(dateDay)),
-    setDateMonth: (dateMonth) => dispatch(setDateMonth(dateMonth)),
-    setDateYear: (dateYear) => dispatch(setDateYear(dateYear)),
 });
 
 const mapStateToProps = (state) => ({
     date: state.date,
-    dateDay: state.dateDay,
-    dateMonth: state.dateMonth,
-    dateYear: state.dateYear,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

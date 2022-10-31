@@ -64,9 +64,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
     date: state.date,
-    dateDay: state.dateDay,
-    dateMonth: state.dateMonth,
-    dateYear: state.dateYear,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewDateDisplay);

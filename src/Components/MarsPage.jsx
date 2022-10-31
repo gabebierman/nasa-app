@@ -13,9 +13,6 @@ import { connect } from "react-redux";
 
 function MarsPage() {
     const date = useSelector((state) => state.date);
-    const dateDay = useSelector((state) => state.dateDay);
-    const dateMonth = useSelector((state) => state.dateMonth);
-    const dateYear = useSelector((state) => state.dateYear);
     const {
         data: curData,
         error: curError,
@@ -84,9 +81,6 @@ const mapDispatchToProps = (dispatch) => ({});
 
 const mapStateToProps = (state) => ({
     date: state.date,
-    dateDay: state.dateDay,
-    dateMonth: state.dateMonth,
-    dateYear: state.dateYear,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarsPage);

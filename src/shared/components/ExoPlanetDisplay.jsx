@@ -1,7 +1,7 @@
 import React from "react";
 
 function ExoPlanetDisplay() {
-    return <div>ExoPlanetDisplay</div>;
+    return <div></div>;
 }
 
 export default ExoPlanetDisplay;
