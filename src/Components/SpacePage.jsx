@@ -3,13 +3,19 @@ import APODDisplay from "../shared/components/APODDisplay";
 // import ExoPlanetDisplay from "../shared/components/ExoPlanetDisplay";
 // import { useGetExoPlanetQuery } from "../shared/redux/RTKquery/exoplanetApiSlice";
 import { useGetAPODQuery } from "../shared/redux/RTKquery/nasaApiSlice";
+import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
 function SpacePage() {
+    const date = useSelector((state) => state.date);
+    const dateDay = useSelector((state) => state.dateDay);
+    const dateMonth = useSelector((state) => state.dateMonth);
+    const dateYear = useSelector((state) => state.dateYear);
     const {
         data: APODdata,
         error: APODerror,
         isSuccess: APODsuccess,
-    } = useGetAPODQuery("2022-02-22");
+    } = useGetAPODQuery(`${date}`);
     const APODarray = [APODdata];
     // const {
     //     data: EPdata,
@@ -34,4 +40,13 @@ function SpacePage() {
     );
 }
 
-export default SpacePage;
+const mapDispatchToProps = (dispatch) => ({});
+
+const mapStateToProps = (state) => ({
+    date: state.date,
+    dateDay: state.dateDay,
+    dateMonth: state.dateMonth,
+    dateYear: state.dateYear,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpacePage);

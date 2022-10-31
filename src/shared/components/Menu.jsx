@@ -18,6 +18,9 @@ const Menu = ({ date, clearDate }) => {
                     <NavLink className="link" to="/space">
                         Space
                     </NavLink>
+                    <NavLink className="link" to="/newdate">
+                        New Search
+                    </NavLink>
                 </>
             )}
         </nav>

@@ -17,6 +17,7 @@ function EarthPage() {
     const dateDay = useSelector((state) => state.dateDay);
     const dateMonth = useSelector((state) => state.dateMonth);
     const dateYear = useSelector((state) => state.dateYear);
+
     const {
         data: eventData,
         error: eventError,
@@ -35,9 +36,9 @@ function EarthPage() {
         isLoading: neoLoading,
     } = useGetNearEarthObjectQuery(`${date}`);
 
-    const yyyy = `${dateYear}`;
-    const mm = `${dateMonth}`;
-    const dd = `${dateDay}`;
+    const yyyy = date.toString().slice(0, 4);
+    const mm = date.toString().slice(5, 7);
+    const dd = date.toString().slice(8, 10);
 
     return (
         <>

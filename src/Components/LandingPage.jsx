@@ -3,13 +3,14 @@ import {
     setDateDay,
     setDate,
     setDateMonth,
-    // setDateYear,
+    setDateYear,
 } from "../shared/redux/slices/dateSlice";
 import { connect } from "react-redux";
 
-function LandingPage({ setDate }) {
+function LandingPage({ setDate, setDateYear }) {
     const [dateDay, setDateDay] = useState("");
     const [dateMonth, setDateMonth] = useState("");
+    // const [dateYear, setDateYear] = useState("");
 
     return (
         <>
@@ -41,7 +42,7 @@ function LandingPage({ setDate }) {
             ></input>
             <button
                 disabled={dateDay.length === 0}
-                onClick={() => setDate(`2022-${dateMonth}-${dateDay}`)}
+                onClick={() => setDate(`2021-${dateMonth}-${dateDay}`)}
             >
                 Search
             </button>
@@ -53,13 +54,14 @@ const mapDispatchToProps = (dispatch) => ({
     setDate: (dateAll) => dispatch(setDate(dateAll)),
     setDateDay: (dateDay) => dispatch(setDateDay(dateDay)),
     setDateMonth: (dateMonth) => dispatch(setDateMonth(dateMonth)),
+    setDateYear: (dateYear) => dispatch(setDateYear(dateYear)),
 });
 
 const mapStateToProps = (state) => ({
     date: state.date,
     dateDay: state.dateDay,
     dateMonth: state.dateMonth,
-    // dateYear: state.dateYear,
+    dateYear: state.dateYear,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

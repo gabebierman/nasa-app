@@ -14,7 +14,10 @@ function App() {
             <Router>
                 <Menu />
                 <Routes>
-                    <Route element={<PrivateRoute component={<NewDateDisplay />} />}></Route>
+                    <Route
+                        path="/newdate"
+                        element={<PrivateRoute component={<NewDateDisplay />} />}
+                    ></Route>
                     <Route
                         path="/landing"
                         element={<PublicRoute component={<LandingPage />} />}

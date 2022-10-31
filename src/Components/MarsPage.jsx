@@ -7,19 +7,26 @@ import {
     use,
     useGetMarsImagePerseveranceQuery,
 } from "../shared/redux/RTKquery/nasaApiSlice";
+import { date } from "../shared/redux/store";
+import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 
 function MarsPage() {
+    const date = useSelector((state) => state.date);
+    const dateDay = useSelector((state) => state.dateDay);
+    const dateMonth = useSelector((state) => state.dateMonth);
+    const dateYear = useSelector((state) => state.dateYear);
     const {
         data: curData,
         error: curError,
         isSuccess: curSuccess,
-    } = useGetMarsImageCuriosityQuery("2022-02-22");
+    } = useGetMarsImageCuriosityQuery(`${date}`);
 
     const {
         data: perData,
         error: perError,
         isSuccess: perSuccess,
-    } = useGetMarsImagePerseveranceQuery("2022-02-22");
+    } = useGetMarsImagePerseveranceQuery(`${date}`);
     console.log(perData);
     console.log(curData);
 
@@ -73,5 +80,13 @@ function MarsPage() {
         </>
     );
 }
+const mapDispatchToProps = (dispatch) => ({});
 
-export default MarsPage;
+const mapStateToProps = (state) => ({
+    date: state.date,
+    dateDay: state.dateDay,
+    dateMonth: state.dateMonth,
+    dateYear: state.dateYear,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MarsPage);
