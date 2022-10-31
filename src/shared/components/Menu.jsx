@@ -2,28 +2,30 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { clearDate } from "../redux/slices/dateSlice";
+import { Nav } from "../styled/Nav";
+import { MenuLink } from "../styled/NavLink";
 
 const Menu = ({ date }) => {
     return (
-        <nav>
-            {!date && <NavLink className="link" to="/landing"></NavLink>}
+        <Nav>
+            {!date && <MenuLink className="link" to="/landing"></MenuLink>}
             {date && (
                 <>
-                    <NavLink className="link" to="/earth">
+                    <MenuLink className="link" to="/earth">
                         Earth
-                    </NavLink>
-                    <NavLink className="link" to="/mars">
+                    </MenuLink>
+                    <MenuLink className="link" to="/mars">
                         Mars
-                    </NavLink>
-                    <NavLink className="link" to="/space">
+                    </MenuLink>
+                    <MenuLink className="link" to="/space">
                         Space
-                    </NavLink>
-                    <NavLink className="link" to="/newdate">
+                    </MenuLink>
+                    <MenuLink className="link" to="/newdate">
                         New Search
-                    </NavLink>
+                    </MenuLink>
                 </>
             )}
-        </nav>
+        </Nav>
     );
 };
 

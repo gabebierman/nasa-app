@@ -4,18 +4,13 @@ import MarsPerseveranceDisplay from "../shared/components/MarsPerseveranceDispla
 import InsightDisplay from "../shared/components/MarsWeatherDisplay";
 import {
     useGetMarsImageCuriosityQuery,
-    use,
     useGetMarsImagePerseveranceQuery,
 } from "../shared/redux/RTKquery/nasaApiSlice";
-import { date } from "../shared/redux/store";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 
 function MarsPage() {
     const date = useSelector((state) => state.date);
-    const dateDay = useSelector((state) => state.dateDay);
-    const dateMonth = useSelector((state) => state.dateMonth);
-    const dateYear = useSelector((state) => state.dateYear);
     const {
         data: curData,
         error: curError,
@@ -27,8 +22,8 @@ function MarsPage() {
         error: perError,
         isSuccess: perSuccess,
     } = useGetMarsImagePerseveranceQuery(`${date}`);
-    console.log(perData);
     console.log(curData);
+    console.log(perData);
 
     let curPic = [];
     let perPic = [];
@@ -60,14 +55,14 @@ function MarsPage() {
             <div>
                 {curError && <p>curiostiy error</p>}
                 {curSuccess && getCurCam()}
-                {curData.length > 0 && <p>Pictures from Curiostiy on {date}</p>}
-                {curData.length > 0 &&
+                {curPic.length > 0 && <p>Pictures from Curiostiy on {date}</p>}
+                {curPic.length > 1 &&
                     curPic.map((val) => (
                         <MarsCuriosityDisplay key={val.id} cam_name={val.cam} link={val.img} />
                     ))}
                 {perSuccess && getPerCam()}
-                {perData.length > 0 && <p>Pictures from Perserverance on {date}</p>}
-                {perData.length > 0 &&
+                {perPic.length > 0 && <p>Pictures from Perserverance on {date}</p>}
+                {perPic.length > 0 &&
                     perPic.map((val) => (
                         <MarsPerseveranceDisplay
                             key={val.id}
@@ -84,9 +79,6 @@ const mapDispatchToProps = (dispatch) => ({});
 
 const mapStateToProps = (state) => ({
     date: state.date,
-    dateDay: state.dateDay,
-    dateMonth: state.dateMonth,
-    dateYear: state.dateYear,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarsPage);
