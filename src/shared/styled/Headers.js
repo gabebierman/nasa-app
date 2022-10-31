@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 const GenericHeading = styled.h1((props) => ({
-    color: props.theme.colors[props.color],
     textAlign: "center",
 }));
 

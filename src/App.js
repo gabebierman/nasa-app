@@ -7,12 +7,15 @@ import NewDateDisplay from "./shared/components/NewDateDisplay";
 import Menu from "./shared/components/Menu";
 import { PrivateRoute, PublicRoute } from "../src/shared/components/ProtectedRoute";
 import LandingPage from "./Components/LandingPage";
+import ErrorBoundary from "./shared/components/ErrBoundry";
 
 function App() {
     return (
         <>
             <Router>
+                <ErrorBoundary />
                 <Menu />
+
                 <Routes>
                     <Route
                         path="/newdate"

@@ -73,7 +73,7 @@ function MarsPage() {
                 {perError && routeChange()}
                 <H3>Pictures from Perserverance on {date}</H3>
                 {perSuccess && getPerCam()}
-                {perPic.length > 0 &&
+                {perPic.length > 1 &&
                     perPic.map((val) => (
                         <MarsPerseveranceDisplay
                             key={val.id}

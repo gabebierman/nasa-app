@@ -20,15 +20,15 @@ const queryClient = new QueryClient({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <ErrorBoundary>
-            <ThemeProvider>
+        <ThemeProvider>
+            <ErrorBoundary>
                 <Provider store={store}>
                     <QueryClientProvider client={queryClient}>
                         <App />
                     </QueryClientProvider>
                 </Provider>
-            </ThemeProvider>
-        </ErrorBoundary>
+            </ErrorBoundary>
+        </ThemeProvider>
     </React.StrictMode>
 );
 
