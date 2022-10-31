@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { setDateDay, setDate, setDateMonth, setDateYear } from "../redux/slices/dateSlice";
+import {
+    setDateDay,
+    setDate,
+    setDateMonth,
+    // setDateYear,
+} from "../shared/redux/slices/dateSlice";
 import { connect } from "react-redux";
 
 function LandingPage({ setDate }) {
     const [dateDay, setDateDay] = useState("");
     const [dateMonth, setDateMonth] = useState("");
-    const [dateYear, setDateYear] = useState("");
 
     return (
         <>
-            <div>New Date Display</div>
+            <div>Enter your birth day and month</div>
             <select
                 id="month"
                 value={dateMonth}
@@ -35,19 +39,9 @@ function LandingPage({ setDate }) {
                 value={dateDay}
                 onChange={(e) => setDateDay(e.target.value)}
             ></input>
-            <select value={dateYear} onChange={(e) => setDateYear(e.target.value)}>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-                <option value="2015">2015</option>
-            </select>
             <button
                 disabled={dateDay.length === 0}
-                onClick={() => setDate(`${dateYear}-${dateMonth}-${dateDay}`)}
+                onClick={() => setDate(`2022-${dateMonth}-${dateDay}`)}
             >
                 Search
             </button>
@@ -59,14 +53,13 @@ const mapDispatchToProps = (dispatch) => ({
     setDate: (dateAll) => dispatch(setDate(dateAll)),
     setDateDay: (dateDay) => dispatch(setDateDay(dateDay)),
     setDateMonth: (dateMonth) => dispatch(setDateMonth(dateMonth)),
-    setDateYear: (dateYear) => dispatch(setDateYear(dateYear)),
 });
 
 const mapStateToProps = (state) => ({
     date: state.date,
     dateDay: state.dateDay,
     dateMonth: state.dateMonth,
-    dateYear: state.dateYear,
+    // dateYear: state.dateYear,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

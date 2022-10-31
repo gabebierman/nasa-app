@@ -6,11 +6,7 @@ import { clearDate } from "../redux/slices/dateSlice";
 const Menu = ({ date, clearDate }) => {
     return (
         <nav>
-            {!date && (
-                <NavLink className="link" to="/landing">
-                    Logout
-                </NavLink>
-            )}
+            {!date && <NavLink className="link" to="/landing"></NavLink>}
             {date && (
                 <>
                     <NavLink className="link" to="/earth">

@@ -9,7 +9,7 @@ function NewDateDisplay({ setDate }) {
 
     return (
         <>
-            <div>New Date Display</div>
+            <div>Enter a new date to search again</div>
             <select
                 id="month"
                 value={dateMonth}

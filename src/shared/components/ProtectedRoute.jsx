@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 const AuthRoute = ({ requiresDate, component, date }) => {
-    const redirectTo = useMemo(() => (requiresDate ? "/login" : "/earth"), [requiresDate]);
+    const redirectTo = useMemo(() => (requiresDate ? "/landing" : "/earth"), [requiresDate]);
 
     const authorized = useMemo(() => {
         return (!requiresDate && !date) || (requiresDate && date);
@@ -23,9 +23,9 @@ const mapStateToProps = (state) => ({ date: state.date });
 const ConnectedAuthRoute = connect(mapStateToProps, mapDispatchToProps)(AuthRoute);
 
 export const PrivateRoute = ({ component }) => {
-    return <ConnectedAuthRoute requiresUser={true} component={component} />;
+    return <ConnectedAuthRoute requiresDate={true} component={component} />;
 };
 
 export const PublicRoute = ({ component }) => {
-    return <ConnectedAuthRoute requiresUser={false} component={component} />;
+    return <ConnectedAuthRoute requiresDate={false} component={component} />;
 };

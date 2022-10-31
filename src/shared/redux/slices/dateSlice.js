@@ -9,7 +9,7 @@ function yesterday() {
 
 export const dateSlice = createSlice({
     name: "date",
-    initialState: yesterday().toJSON().slice(0, 10),
+    initialState: null,
     reducers: {
         setDate: (state, action) => action.payload,
         setDateDay: (state, action) => action.payload,
