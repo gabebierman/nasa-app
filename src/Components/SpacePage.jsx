@@ -3,6 +3,7 @@ import APODDisplay from "../shared/components/APODDisplay";
 import { useGetAPODQuery } from "../shared/redux/RTKquery/nasaApiSlice";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
+import { FlexContainer } from "../shared/styled/FlexContainer";
 
 function SpacePage() {
     const date = useSelector((state) => state.date);
@@ -14,7 +15,6 @@ function SpacePage() {
     const APODarray = [APODdata];
     return (
         <>
-            <h3>SpacePage</h3>
             {APODdata &&
                 APODarray.map((e) => (
                     <APODDisplay

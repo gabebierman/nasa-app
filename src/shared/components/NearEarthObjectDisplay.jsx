@@ -12,7 +12,10 @@ function NeoWsDisplay({ hazardous, id }) {
                         Bonus! A Near Earth Object passed within hazardous distance of Earth on
                         this day.
                     </p>
-                    <a href={`https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=${id}`}>
+                    <a
+                        target="_blank"
+                        href={`https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr=${id}`}
+                    >
                         Learn More Here
                     </a>
                 </div>

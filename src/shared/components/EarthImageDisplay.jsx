@@ -2,14 +2,18 @@
 //EPIC
 
 import React from "react";
+import { FlexContainer } from "../styled/FlexContainer";
+import { H3 } from "../styled/Headers";
 import { Img } from "../styled/Img";
 
 function EPICDisplay({ image_link, date }) {
     return (
-        <div>
-            <p>Earth on {date}</p>
-            <Img src={image_link}></Img>
-        </div>
+        <>
+            <H3>Earth on {date}</H3>
+            <FlexContainer>
+                <Img src={image_link}></Img>
+            </FlexContainer>
+        </>
     );
 }
 

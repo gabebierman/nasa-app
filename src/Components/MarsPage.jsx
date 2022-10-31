@@ -8,6 +8,8 @@ import {
 } from "../shared/redux/RTKquery/nasaApiSlice";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
+import { FlexContainer } from "../shared/styled/FlexContainer";
+import { H3 } from "../shared/styled/Headers";
 
 function MarsPage() {
     const date = useSelector((state) => state.date);
@@ -22,8 +24,8 @@ function MarsPage() {
         error: perError,
         isSuccess: perSuccess,
     } = useGetMarsImagePerseveranceQuery(`${date}`);
-    console.log(curData);
-    console.log(perData);
+    // console.log(curData);
+    // console.log(perData);
 
     let curPic = [];
     let perPic = [];
@@ -53,15 +55,17 @@ function MarsPage() {
     return (
         <>
             <div>
+                <H3>Pictures from Curiostiy on {date}</H3>
                 {curError && <p>curiostiy error</p>}
                 {curSuccess && getCurCam()}
-                {curPic.length > 0 && <p>Pictures from Curiostiy on {date}</p>}
+
                 {curPic.length > 1 &&
                     curPic.map((val) => (
                         <MarsCuriosityDisplay key={val.id} cam_name={val.cam} link={val.img} />
                     ))}
+                <H3>Pictures from Perserverance on {date}</H3>
                 {perSuccess && getPerCam()}
-                {perPic.length > 0 && <p>Pictures from Perserverance on {date}</p>}
+
                 {perPic.length > 0 &&
                     perPic.map((val) => (
                         <MarsPerseveranceDisplay
@@ -71,7 +75,6 @@ function MarsPage() {
                         />
                     ))}
             </div>
-            <InsightDisplay />
         </>
     );
 }
