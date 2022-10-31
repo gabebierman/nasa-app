@@ -7,6 +7,7 @@ import { ThemeProvider } from "./shared/theme/ThemeProvider";
 import store from "./shared/redux/store";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ErrorBoundary from "./shared/components/ErrBoundry";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,13 +20,15 @@ const queryClient = new QueryClient({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <ThemeProvider>
-            <Provider store={store}>
-                <QueryClientProvider client={queryClient}>
-                    <App />
-                </QueryClientProvider>
-            </Provider>
-        </ThemeProvider>
+        <ErrorBoundary>
+            <ThemeProvider>
+                <Provider store={store}>
+                    <QueryClientProvider client={queryClient}>
+                        <App />
+                    </QueryClientProvider>
+                </Provider>
+            </ThemeProvider>
+        </ErrorBoundary>
     </React.StrictMode>
 );
 

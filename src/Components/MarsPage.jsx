@@ -9,9 +9,15 @@ import {
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { FlexContainer } from "../shared/styled/FlexContainer";
-import { H3 } from "../shared/styled/Headers";
+import { H1, H3 } from "../shared/styled/Headers";
+import { useNavigate } from "react-router-dom";
 
 function MarsPage() {
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = "/landing";
+        navigate(path);
+    };
     const date = useSelector((state) => state.date);
     const {
         data: curData,
@@ -55,17 +61,18 @@ function MarsPage() {
     return (
         <>
             <div>
+                {curError && <H1>UH OH</H1>}
+                {curError && routeChange()}
                 <H3>Pictures from Curiostiy on {date}</H3>
-                {curError && <p>curiostiy error</p>}
                 {curSuccess && getCurCam()}
-
                 {curPic.length > 1 &&
                     curPic.map((val) => (
                         <MarsCuriosityDisplay key={val.id} cam_name={val.cam} link={val.img} />
                     ))}
+                {perError && <H1>UH OH</H1>}
+                {perError && routeChange()}
                 <H3>Pictures from Perserverance on {date}</H3>
                 {perSuccess && getPerCam()}
-
                 {perPic.length > 0 &&
                     perPic.map((val) => (
                         <MarsPerseveranceDisplay

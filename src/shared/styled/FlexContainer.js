@@ -4,7 +4,6 @@ export const FlexContainer = styled.div((props) => ({
     display: "flex",
     flexDirection: props.column && "row",
     flexWrap: "wrap",
-    backgroundColor: props.theme.colors,
     margin: "5px",
     "&>*": {
         flexBasis: getBasis(props),

@@ -3,8 +3,14 @@ import { setDateDay, setDate, setDateMonth, setDateYear } from "../redux/slices/
 import { connect } from "react-redux";
 import { FlexContainer } from "../styled/FlexContainer";
 import { H2 } from "../styled/Headers";
+import { useNavigate } from "react-router-dom";
 
 function NewDateDisplay({ setDate }) {
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = "/earth";
+        navigate(path);
+    };
     const [dateDay, setDateDay] = useState("");
     const [dateMonth, setDateMonth] = useState("");
     const [dateYear, setDateYear] = useState("");
@@ -50,7 +56,9 @@ function NewDateDisplay({ setDate }) {
                 </select>
                 <button
                     disabled={dateDay.length === 0}
-                    onClick={() => setDate(`${dateYear}-${dateMonth}-${dateDay}`)}
+                    onClick={() =>
+                        setDate(`${dateYear}-${dateMonth}-${dateDay}`) && routeChange()
+                    }
                 >
                     Search
                 </button>

@@ -39,7 +39,7 @@ function EarthPage() {
     const dd = date.toString().slice(8, 10);
 
     return (
-        <FlexContainer>
+        <>
             <FlexContainer>
                 {imageDataError && <h2>EPIC error</h2>}
                 {imageData && (
@@ -78,7 +78,7 @@ function EarthPage() {
                         />
                     ))}
             </FlexContainer>
-        </FlexContainer>
+        </>
     );
 }
 
