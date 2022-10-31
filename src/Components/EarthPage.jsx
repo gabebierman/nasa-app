@@ -38,6 +38,14 @@ function EarthPage() {
 
     return (
         <>
+            {imageDataError && <h2>EPIC error</h2>}
+            {imageData && (
+                <EPICDisplay
+                    date={`${date}`}
+                    image_file={imageData[0].file_name}
+                    image_link={`https://api.nasa.gov/EPIC/archive/natural/${yyyy}/${mm}/${dd}/png/${imageData[0].file_name}.png?api_key=${process.env.REACT_APP_NASA_API_KEY}`}
+                />
+            )}
             {eventError && <h2>EONET error</h2>}
             {eventSuccess &&
                 eventData.map((val) => (
@@ -49,13 +57,6 @@ function EarthPage() {
                         event_type={val.event_type}
                     />
                 ))}
-            {imageDataError && <h2>EPIC error</h2>}
-            {imageData && (
-                <EPICDisplay
-                    image_file={imageData[0].file_name}
-                    image_link={`https://api.nasa.gov/EPIC/archive/natural/${yyyy}/${mm}/${dd}/png/${imageData[0].file_name}.png?api_key=${process.env.REACT_APP_NASA_API_KEY}`}
-                />
-            )}
             {neoError && <h3>NEO error</h3>}
             {neoLoading && <h3>Loading NEO data...</h3>}
             {neoSuccess &&

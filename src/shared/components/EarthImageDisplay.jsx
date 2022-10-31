@@ -4,11 +4,10 @@
 import React from "react";
 import { Img } from "../styled/Img";
 
-function EPICDisplay({ image_file, image_link }) {
+function EPICDisplay({ image_link, date }) {
     return (
         <div>
-            <p>File name of image - {image_file}</p>
-            <p>img directly below here</p>
+            <p>Earth on {date}</p>
             <Img src={image_link}></Img>
         </div>
     );

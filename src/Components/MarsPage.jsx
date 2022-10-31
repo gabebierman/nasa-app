@@ -13,6 +13,9 @@ import { connect } from "react-redux";
 
 function MarsPage() {
     const date = useSelector((state) => state.date);
+    const dateDay = useSelector((state) => state.dateDay);
+    const dateMonth = useSelector((state) => state.dateMonth);
+    const dateYear = useSelector((state) => state.dateYear);
     const {
         data: curData,
         error: curError,
@@ -55,16 +58,16 @@ function MarsPage() {
     return (
         <>
             <div>
-                {" "}
-                Mars Curiosity Display
                 {curError && <p>curiostiy error</p>}
                 {curSuccess && getCurCam()}
-                {curSuccess &&
+                {curData.length > 0 && <p>Pictures from Curiostiy on {date}</p>}
+                {curData.length > 0 &&
                     curPic.map((val) => (
                         <MarsCuriosityDisplay key={val.id} cam_name={val.cam} link={val.img} />
                     ))}
                 {perSuccess && getPerCam()}
-                {curSuccess &&
+                {perData.length > 0 && <p>Pictures from Perserverance on {date}</p>}
+                {perData.length > 0 &&
                     perPic.map((val) => (
                         <MarsPerseveranceDisplay
                             key={val.id}
@@ -81,6 +84,9 @@ const mapDispatchToProps = (dispatch) => ({});
 
 const mapStateToProps = (state) => ({
     date: state.date,
+    dateDay: state.dateDay,
+    dateMonth: state.dateMonth,
+    dateYear: state.dateYear,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarsPage);
