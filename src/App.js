@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import EarthPage from "./Components/EarthPage";
 import MarsPage from "./Components/MarsPage";
 import SpacePage from "./Components/SpacePage";
-import Menu from "./Components/Menu";
 import NewDateDisplay from "./shared/components/NewDateDisplay";
+import Menu from "./shared/components/Menu";
 
 function App() {
     return (
