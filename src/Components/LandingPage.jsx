@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import {
-    setDateDay,
-    setDate,
-    setDateMonth,
-    setDateYear,
-} from "../shared/redux/slices/dateSlice";
+import { setDate } from "../shared/redux/slices/dateSlice";
 import { connect } from "react-redux";
 import { FlexContainer } from "../shared/styled/FlexContainer";
 import { H4 } from "../shared/styled/Headers";
 import moment from "moment";
 
-function LandingPage({ setDate, setDateYear }) {
-    console.log(moment(String).format());
+function LandingPage({ setDate }) {
     const [dateDay, setDateDay] = useState("");
-    const [dateMonth, setDateMonth] = useState("");
+    const [dateMonth, setDateMonth] = useState("01");
 
     return (
         <>

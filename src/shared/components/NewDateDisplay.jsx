@@ -12,8 +12,8 @@ function NewDateDisplay({ setDate }) {
         navigate(path);
     };
     const [dateDay, setDateDay] = useState("");
-    const [dateMonth, setDateMonth] = useState("");
-    const [dateYear, setDateYear] = useState("");
+    const [dateMonth, setDateMonth] = useState("01");
+    const [dateYear, setDateYear] = useState("2022");
 
     return (
         <>

@@ -10,6 +10,9 @@ import { connect } from "react-redux";
 import { FlexContainer } from "../../shared/styled/FlexContainer";
 import { H1, H3 } from "../../shared/styled/Headers";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import parseCurData from "./functions/parseCurData";
+import parsePerData from "./functions/parsePerData";
 
 function MarsPage() {
     let navigate = useNavigate();
@@ -18,60 +21,29 @@ function MarsPage() {
         navigate(path);
     };
     const date = useSelector((state) => state.date);
-    const {
-        data: curData,
-        error: curError,
-        isSuccess: curSuccess,
-    } = useGetMarsImageCuriosityQuery(`${date}`);
-
-    const {
-        data: perData,
-        error: perError,
-        isSuccess: perSuccess,
-    } = useGetMarsImagePerseveranceQuery(`${date}`);
-    // console.log(curData);
-    // console.log(perData);
-
-    let curPic = [];
-    let perPic = [];
-
-    const getCurCam = () => {
-        let curMast = curData.find((e) => e.cam === "Mast Camera");
-        curPic.push(curMast);
-        let curNav = curData.find((e) => e.cam === "Navigation Camera");
-        curPic.push(curNav);
-    };
-
-    const getPerCam = () => {
-        let perNavL = perData.find((e) => e.cam === "Navigation Camera - Left");
-        let perNavR = perData.find((e) => e.cam === "Navigation Camera - Right");
-        let perMastL = perData.find((e) => e.cam === "Mast Camera Zoom - Left");
-        let perMastR = perData.find((e) => e.cam === "Mast Camera Zoom - Right");
-        let perRearL = perData.find((e) => e.cam === "Rear Hazard Avoidance Camera - Right");
-        let perRearR = perData.find((e) => e.cam === "Rear Hazard Avoidance Camera - Left");
-        perPic.push(perNavL);
-        perPic.push(perNavR);
-        perPic.push(perMastL);
-        perPic.push(perMastR);
-        perPic.push(perRearL);
-        perPic.push(perRearR);
-    };
+    console.log(date);
+    const { data: curData, error: curError } = useGetMarsImageCuriosityQuery(`${date}`);
+    console.log(curData);
+    const curPic = parseCurData(curData);
+    console.log(curPic);
+    const { data: perData, error: perError } = useGetMarsImagePerseveranceQuery(`${date}`);
+    const perPic = parsePerData(perData);
+    // console.log(curPic);
+    // console.log(perPic);
 
     return (
         <>
             <div>
                 {curError && <H1>UH OH</H1>}
                 {curError && routeChange()}
-                <H3>Pictures from Curiostiy on {date}</H3>
-                {curSuccess && getCurCam()}
+                <H3>Pictures from Curiostiy on {moment(date).format("MM-DD-YYYY")}</H3>
                 {curPic.length > 1 &&
                     curPic.map((val) => (
                         <MarsCuriosityDisplay key={val.id} cam_name={val.cam} link={val.img} />
                     ))}
-                {perError && <H1>UH OH</H1>}
+                {/* {perError && <H1>UH OH</H1>}
                 {perError && routeChange()}
-                <H3>Pictures from Perserverance on {date}</H3>
-                {perSuccess && getPerCam()}
+                <H3>Pictures from Perserverance on {moment(date).format("MM-DD-YYYY")}</H3>
                 {perPic.length > 1 &&
                     perPic.map((val) => (
                         <MarsPerseveranceDisplay
@@ -79,7 +51,7 @@ function MarsPage() {
                             cam_name={val.cam}
                             link={val.img}
                         />
-                    ))}
+                    ))} */}
             </div>
         </>
     );

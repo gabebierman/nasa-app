@@ -12,6 +12,7 @@ import { setEarthImage } from "../../shared/redux/slices/earthPictureSlice";
 import { useSelector } from "react-redux";
 import { FlexContainer } from "../../shared/styled/FlexContainer";
 import { H3 } from "../../shared/styled/Headers";
+import moment from "moment";
 
 function EarthPage() {
     const date = useSelector((state) => state.date);
@@ -34,24 +35,29 @@ function EarthPage() {
         isLoading: neoLoading,
     } = useGetNearEarthObjectQuery(`${date}`);
 
-    const yyyy = date.toString().slice(0, 4);
-    const mm = date.toString().slice(5, 7);
-    const dd = date.toString().slice(8, 10);
-
     return (
         <>
             <FlexContainer>
                 {imageDataError && <h2>EPIC error</h2>}
                 {imageData && (
                     <EPICDisplay
-                        date={`${date}`}
+                        date={moment(date).format("MM-DD-YYYY")}
                         image_file={imageData[0].file_name}
-                        image_link={`https://api.nasa.gov/EPIC/archive/natural/${yyyy}/${mm}/${dd}/png/${imageData[0].file_name}.png?api_key=${process.env.REACT_APP_NASA_API_KEY}`}
+                        image_link={`https://api.nasa.gov/EPIC/archive/natural/${moment(
+                            date
+                        ).format("YYYY")}/${moment(date).format("MM")}/${moment(date).format(
+                            "DD"
+                        )}/png/${imageData[0].file_name}.png?api_key=${
+                            process.env.REACT_APP_NASA_API_KEY
+                        }`}
                     />
                 )}
             </FlexContainer>
             {eventSuccess && (
-                <H3>Some major weather and geological events that happened on {date}</H3>
+                <H3>
+                    Some major weather and geological events that happened on{" "}
+                    {moment(date).format("MM-DD-YYYY")}
+                </H3>
             )}
             <FlexContainer>
                 {eventError && <h2>EONET error</h2>}
@@ -89,9 +95,6 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
     searchResults: state.earthPicture,
     date: state.date,
-    dateDay: state.dateDay,
-    dateMonth: state.dateMonth,
-    dateYear: state.dateYear,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EarthPage);
