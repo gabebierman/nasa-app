@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import EarthPage from "./Components/EarthPage";
-import MarsPage from "./Components/MarsPage";
-import SpacePage from "./Components/SpacePage";
+import EarthPage from "./Components/EarthPage/EarthPage";
+import MarsPage from "./Components/MarsPage/MarsPage";
+import SpacePage from "./Components/SpacePage/SpacePage";
 import NewDateDisplay from "./shared/components/NewDateDisplay";
 import Menu from "./shared/components/Menu";
 import { PrivateRoute, PublicRoute } from "../src/shared/components/ProtectedRoute";

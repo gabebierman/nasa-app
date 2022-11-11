@@ -8,8 +8,10 @@ import {
 import { connect } from "react-redux";
 import { FlexContainer } from "../shared/styled/FlexContainer";
 import { H4 } from "../shared/styled/Headers";
+import moment from "moment";
 
 function LandingPage({ setDate, setDateYear }) {
+    console.log(moment(String).format());
     const [dateDay, setDateDay] = useState("");
     const [dateMonth, setDateMonth] = useState("");
 

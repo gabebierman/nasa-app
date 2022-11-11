@@ -1,7 +1,7 @@
 import React from "react";
-import { FlexContainer } from "../styled/FlexContainer";
-import { H3, H4 } from "../styled/Headers";
-import { Img } from "../styled/Img";
+import { FlexContainer } from "../../../shared/styled/FlexContainer";
+import { H3, H4 } from "../../../shared/styled/Headers";
+import { Img } from "../../../shared/styled/Img";
 
 function MarsPerseveranceDisplay({ cam_name, link }) {
     return (
