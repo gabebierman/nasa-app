@@ -6,24 +6,14 @@ import { setUser } from "../redux/slices/userSlice";
 
 const provider = new GoogleAuthProvider();
 
-async function signIn({ setUser }) {
+export default async function signIn() {
     try {
         const result = await signInWithPopup(auth, provider);
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const user = result.user;
-        setUser(user);
+        auth.onAuthStateChanged((activeUser) => setUser(activeUser));
         console.log(user);
     } catch (error) {
         console.error(error);
     }
 }
-
-const mapDispatchToProps = (dispatch) => ({
-    setUser: (user) => dispatch(setUser(user)),
-});
-
-const mapStateToProps = (state) => ({
-    user: state.user,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(signIn);

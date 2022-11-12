@@ -9,15 +9,11 @@ import { LowerNav } from "../styled/LowerNav";
 import { Nav } from "../styled/Nav";
 import { MenuLink } from "../styled/NavLink";
 import signIn from "../functions/SignIn";
-import { setUser } from "../redux/slices/userSlice";
 
 const Menu = ({ setDate }) => {
-    const [user, setUser] = useState(null);
-    auth.onAuthStateChanged((activeUser) => setUser(activeUser));
     const [searchDate, setSearchDate] = useState(
         moment().subtract(2, "days").format("YYYY-MM-DD")
     );
-    // console.log(user, "state check in menu");
     return (
         <>
             <Nav>
@@ -32,14 +28,14 @@ const Menu = ({ setDate }) => {
                         <MenuLink className="link" to="/space">
                             Space
                         </MenuLink>
-                        {!user && (
+                        {!auth.currentUser && (
                             <MenuLink className="link" onClick={() => signIn()}>
                                 Sign In
                             </MenuLink>
                         )}
-                        {user && (
+                        {auth.currentUser && (
                             <MenuLink className="link" to="/favorites">
-                                Your Saved Images
+                                Favorites
                             </MenuLink>
                         )}
                     </>
@@ -59,7 +55,14 @@ const Menu = ({ setDate }) => {
                     ></input>
                 </div>
                 <div style={{ margin: "0px 5px" }}>
-                    <button onClick={() => setDate(searchDate)}>search</button>
+                    <button
+                        onClick={() => {
+                            setDate(searchDate);
+                            console.log(searchDate);
+                        }}
+                    >
+                        search
+                    </button>
                 </div>
             </LowerNav>
         </>
@@ -69,7 +72,7 @@ const Menu = ({ setDate }) => {
 const mapDispatchToProps = (dispatch) => ({
     clearDate: () => clearDate(),
     setDate: (dateAll) => dispatch(setDate(dateAll)),
-    setUser: (user) => dispatch(setUser(user)),
+    // setUser: (user) => dispatch(setUser(user)),
 });
 
 const mapStateToProps = (state) => ({ date: state.date, user: state.user });
