@@ -3,7 +3,7 @@ import moment from "moment";
 
 export const dateSlice = createSlice({
     name: "date",
-    initialState: null,
+    initialState: moment().subtract(2, "days").format("YYYY-MM-DD"),
     reducers: {
         setDate: (state, action) => action.payload,
         setDateDay: (state, action) => action.payload,

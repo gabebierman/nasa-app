@@ -3,10 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import EarthPage from "./Components/EarthPage/EarthPage";
 import MarsPage from "./Components/MarsPage/MarsPage";
 import SpacePage from "./Components/SpacePage/SpacePage";
-import NewDateDisplay from "./shared/components/NewDateDisplay";
 import Menu from "./shared/components/Menu";
 import { PrivateRoute, PublicRoute } from "../src/shared/components/ProtectedRoute";
-import LandingPage from "./Components/LandingPage";
 import ErrorBoundary from "./shared/components/ErrBoundry";
 
 function App() {
@@ -17,14 +15,6 @@ function App() {
                 <Menu />
 
                 <Routes>
-                    <Route
-                        path="/newdate"
-                        element={<PrivateRoute component={<NewDateDisplay />} />}
-                    ></Route>
-                    <Route
-                        path="/landing"
-                        element={<PublicRoute component={<LandingPage />} />}
-                    ></Route>
                     <Route
                         path="/earth"
                         element={<PrivateRoute component={<EarthPage />} />}

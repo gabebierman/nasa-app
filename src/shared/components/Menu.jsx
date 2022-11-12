@@ -1,36 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
+import moment from "moment";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { clearDate } from "../redux/slices/dateSlice";
+import { clearDate, setDate } from "../redux/slices/dateSlice";
+import { FlexContainer } from "../styled/FlexContainer";
+import { LowerNav } from "../styled/LowerNav";
 import { Nav } from "../styled/Nav";
 import { MenuLink } from "../styled/NavLink";
 
-const Menu = ({ date }) => {
+const Menu = ({ setDate }) => {
+    const [searchDate, setSearchDate] = useState(
+        moment().subtract(2, "days").format("YYYY-MM-DD")
+    );
     return (
-        <Nav>
-            {!date && <MenuLink className="link" to="/landing"></MenuLink>}
-            {date && (
+        <>
+            <Nav>
                 <>
-                    <MenuLink className="link" to="/earth">
-                        Earth
-                    </MenuLink>
-                    <MenuLink className="link" to="/mars">
-                        Mars
-                    </MenuLink>
-                    <MenuLink className="link" to="/space">
-                        Space
-                    </MenuLink>
-                    <MenuLink className="link" to="/newdate">
-                        New Search
-                    </MenuLink>
+                    <>
+                        <MenuLink className="link" to="/earth">
+                            Earth
+                        </MenuLink>
+                        <MenuLink className="link" to="/mars">
+                            Mars
+                        </MenuLink>
+                        <MenuLink className="link" to="/space">
+                            Space
+                        </MenuLink>
+                    </>
                 </>
-            )}
-        </Nav>
+            </Nav>
+            <LowerNav>
+                <div style={{ margin: "0px 5px" }}>
+                    <label>Enter a new date to search:</label>
+                </div>
+                <div style={{ margin: "0px 5px" }}>
+                    <input
+                        type="date"
+                        value={searchDate}
+                        onChange={(e) => setSearchDate(e.target.value)}
+                        min="2015-09-01"
+                        max={`${moment().subtract(2, "days").format("YYYY-MM-DD")}`}
+                    ></input>
+                </div>
+                <div style={{ margin: "0px 5px" }}>
+                    <button onClick={() => setDate(searchDate)}>search</button>
+                </div>
+            </LowerNav>
+        </>
     );
 };
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (dispatch) => ({
     clearDate: () => clearDate(),
+    setDate: (dateAll) => dispatch(setDate(dateAll)),
 });
 
 const mapStateToProps = (state) => ({ date: state.date });
