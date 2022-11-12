@@ -17,26 +17,10 @@ function App() {
                 <Menu />
 
                 <Routes>
-                    <Route
-                        path="/earth"
-                        element={<PrivateRoute component={<EarthPage />} />}
-                    ></Route>
-                    <Route
-                        path="/mars"
-                        element={
-                            // <ErrorBoundary>
-                            <PrivateRoute component={<MarsPage />} />
-                            // </ErrorBoundary>
-                        }
-                    ></Route>
-                    <Route
-                        path="/space"
-                        element={<PrivateRoute component={<SpacePage />} />}
-                    ></Route>
-                    <Route
-                        path="/signin"
-                        element={<PrivateRoute component={<SignInPage />} />}
-                    ></Route>
+                    <Route path="/earth" element=<EarthPage />></Route>
+                    <Route path="/mars" element=<MarsPage />></Route>
+                    <Route path="/space" element=<SpacePage />></Route>
+                    <Route path="/signin" element=<SignInPage />></Route>
                     <Route
                         path="/favorites"
                         element={<PrivateRoute component={<FavoritesPage />} />}

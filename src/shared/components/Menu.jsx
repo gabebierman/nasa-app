@@ -14,6 +14,7 @@ const Menu = ({ setDate }) => {
     const [searchDate, setSearchDate] = useState(
         moment().subtract(2, "days").format("YYYY-MM-DD")
     );
+
     return (
         <>
             <Nav>
