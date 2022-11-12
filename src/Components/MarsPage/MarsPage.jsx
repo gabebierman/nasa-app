@@ -21,35 +21,50 @@ function MarsPage() {
         navigate(path);
     };
     const date = useSelector((state) => state.date);
-    const { data: curData, error: curError } = useGetMarsImageCuriosityQuery(`${date}`);
-    const curPic = parseCurData(curData);
-    console.log(curPic);
+    let curPic;
+    const {
+        data: curData,
+        error: curError,
+        isSuccess: curSuccess,
+    } = useGetMarsImageCuriosityQuery(`${date}`);
+    if (curSuccess && curData.length > 0) {
+        curPic = parseCurData(curData);
+    }
+    console.log("mars page cur pic", curPic);
+    console.log("mars page cur data", curData);
 
-    // const { data: perData, error: perError } = useGetMarsImagePerseveranceQuery(`${date}`);
-    // const perPic = parsePerData(perData);
-    // console.log(perPic);
-
+    let perPic;
+    const {
+        data: perData,
+        error: perError,
+        isSuccess: perSuccess,
+    } = useGetMarsImagePerseveranceQuery(`${date}`);
+    if (perSuccess && perData.length > 0) {
+        perPic = parsePerData(perData);
+    }
+    console.log("mars page per pic", perPic);
+    console.log("mars page per data", perData);
     return (
         <>
             <div>
-                {curError && <H1>UH OH</H1>}
-                {curError && routeChange()}
                 <H3>Pictures from Curiostiy on {moment(date).format("MM-DD-YYYY")}</H3>
-                {curPic.length > 1 &&
+                {curSuccess &&
+                    curData.length > 0 &&
                     curPic.map((val) => (
                         <MarsCuriosityDisplay key={val.id} cam_name={val.cam} link={val.img} />
                     ))}
-                {/* {perError && <H1>UH OH</H1>}
-                {perError && routeChange()}
+                {curSuccess && curData.length === 0 && <p>no pictures today</p>}
                 <H3>Pictures from Perserverance on {moment(date).format("MM-DD-YYYY")}</H3>
-                {perPic.length > 1 &&
+                {perSuccess &&
+                    perData.length > 0 &&
                     perPic.map((val) => (
                         <MarsPerseveranceDisplay
                             key={val.id}
                             cam_name={val.cam}
                             link={val.img}
                         />
-                    ))} */}
+                    ))}
+                {curSuccess && curData.length === 0 && <p>no pictures today</p>}
             </div>
         </>
     );

@@ -27,6 +27,9 @@ export const nasaApiSlice = createApi({
                 }));
             },
         }),
+        //
+        //
+        //
         getMarsImageCuriosity: builder.query({
             query: (date) =>
                 `mars-photos/api/v1/rovers/curiosity/photos/?api_key=${process.env.REACT_APP_NASA_API_KEY}&earth_date=${date}`,
@@ -38,6 +41,9 @@ export const nasaApiSlice = createApi({
                 }));
             },
         }),
+        //
+        //
+        //
         getMarsImagePerseverance: builder.query({
             query: (date) =>
                 `mars-photos/api/v1/rovers/Perseverance/photos/?api_key=${process.env.REACT_APP_NASA_API_KEY}&earth_date=${date}`,

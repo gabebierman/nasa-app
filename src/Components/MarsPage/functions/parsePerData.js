@@ -4,22 +4,27 @@ function parsePerData(perData) {
     let perPic = [];
     const getPerCam = (perData) => {
         let perNavL = perData.find((e) => e.cam === "Navigation Camera - Left");
-        let perNavR = perData.find((e) => e.cam === "Navigation Camera - Right");
-        let perMastL = perData.find((e) => e.cam === "Mast Camera Zoom - Left");
-        let perMastR = perData.find((e) => e.cam === "Mast Camera Zoom - Right");
-        let perRearL = perData.find((e) => e.cam === "Rear Hazard Avoidance Camera - Right");
-        let perRearR = perData.find((e) => e.cam === "Rear Hazard Avoidance Camera - Left");
         perPic.push(perNavL);
+
+        let perNavR = perData.find((e) => e.cam === "Navigation Camera - Right");
         perPic.push(perNavR);
+
+        let perMastL = perData.find((e) => e.cam === "Mast Camera Zoom - Left");
         perPic.push(perMastL);
+
+        let perMastR = perData.find((e) => e.cam === "Mast Camera Zoom - Right");
         perPic.push(perMastR);
-        perPic.push(perRearL);
+
+        let perRearR = perData.find((e) => e.cam === "Rear Hazard Avoidance Camera - Right");
         perPic.push(perRearR);
-        perPic.filter((v) => v.cam === undefined);
+
+        let perRearL = perData.find((e) => e.cam === "Rear Hazard Avoidance Camera - Left");
+        perPic.push(perRearL);
     };
     getPerCam(perData);
-    // console.log(perPic);
-
+    console.log("pre filter", perPic);
+    perPic = perPic.filter((e) => e !== undefined);
+    console.log("post filter", perPic);
     return perPic;
 }
 

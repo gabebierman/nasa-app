@@ -13,7 +13,7 @@ function App() {
     return (
         <>
             <Router>
-                <ErrorBoundary />
+                {/* <ErrorBoundary /> */}
                 <Menu />
 
                 <Routes>
@@ -32,9 +32,9 @@ function App() {
                     <Route
                         path="/mars"
                         element={
-                            <ErrorBoundary>
-                                <PrivateRoute component={<MarsPage />} />
-                            </ErrorBoundary>
+                            // <ErrorBoundary>
+                            <PrivateRoute component={<MarsPage />} />
+                            // </ErrorBoundary>
                         }
                     ></Route>
                     <Route
