@@ -30,8 +30,6 @@ function MarsPage() {
     if (curSuccess && curData.length > 0) {
         curPic = parseCurData(curData);
     }
-    console.log("mars page cur pic", curPic);
-    console.log("mars page cur data", curData);
 
     let perPic;
     const {
@@ -42,8 +40,6 @@ function MarsPage() {
     if (perSuccess && perData.length > 0) {
         perPic = parsePerData(perData);
     }
-    console.log("mars page per pic", perPic);
-    console.log("mars page per data", perData);
     return (
         <>
             <div>

@@ -22,9 +22,7 @@ function parsePerData(perData) {
         perPic.push(perRearL);
     };
     getPerCam(perData);
-    console.log("pre filter", perPic);
     perPic = perPic.filter((e) => e !== undefined);
-    console.log("post filter", perPic);
     return perPic;
 }
 

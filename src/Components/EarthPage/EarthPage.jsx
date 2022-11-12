@@ -27,7 +27,6 @@ function EarthPage() {
         error: imageDataError,
         isSuccess: imageDataSuccess,
     } = useGetEarthImageDataQuery(`${date}`);
-
     const {
         data: neoData,
         error: neoError,
@@ -38,8 +37,8 @@ function EarthPage() {
     return (
         <>
             <FlexContainer>
-                {imageDataError && <h2>EPIC error</h2>}
-                {imageData && (
+                {imageDataSuccess && imageData.length === 0 && <p>no picture for today</p>}
+                {imageDataSuccess && imageData.length > 0 && (
                     <EPICDisplay
                         date={moment(date).format("MM-DD-YYYY")}
                         image_file={imageData[0].file_name}
