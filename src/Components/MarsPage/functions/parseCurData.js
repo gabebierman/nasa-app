@@ -9,7 +9,7 @@ function parseCurData(curData) {
         curPic.push(curNav);
     };
     getCurCam(curData);
-    curPic.filter((v) => v.cam !== undefined);
+    curPic = curPic.filter((e) => e !== undefined);
     return curPic;
 }
 
