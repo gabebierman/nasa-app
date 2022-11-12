@@ -7,6 +7,7 @@ import Menu from "./shared/components/Menu";
 import { PrivateRoute, PublicRoute } from "../src/shared/components/ProtectedRoute";
 import ErrorBoundary from "./shared/components/ErrBoundry";
 import SignInPage from "./shared/functions/SignIn";
+import FavoritesPage from "./Components/FavoritesPage/FavoritesPage";
 
 function App() {
     return (
@@ -35,6 +36,10 @@ function App() {
                     <Route
                         path="/signin"
                         element={<PrivateRoute component={<SignInPage />} />}
+                    ></Route>
+                    <Route
+                        path="/favorites"
+                        element={<PrivateRoute component={<FavoritesPage />} />}
                     ></Route>
                     <Route path="*" element={<Navigate to="/earth" />}></Route>
                 </Routes>
