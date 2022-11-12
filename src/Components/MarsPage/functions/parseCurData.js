@@ -1,7 +1,7 @@
 import React from "react";
 
 function parseCurData(curData) {
-    // console.log(curData);
+    console.log(curData);
     let curPic = [];
     const getCurCam = (curData) => {
         let curMast = curData.find((e) => e.cam === "Mast Camera");

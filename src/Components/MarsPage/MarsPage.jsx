@@ -21,14 +21,12 @@ function MarsPage() {
         navigate(path);
     };
     const date = useSelector((state) => state.date);
-    console.log(date);
     const { data: curData, error: curError } = useGetMarsImageCuriosityQuery(`${date}`);
-    console.log(curData);
     const curPic = parseCurData(curData);
     console.log(curPic);
-    const { data: perData, error: perError } = useGetMarsImagePerseveranceQuery(`${date}`);
-    const perPic = parsePerData(perData);
-    // console.log(curPic);
+
+    // const { data: perData, error: perError } = useGetMarsImagePerseveranceQuery(`${date}`);
+    // const perPic = parsePerData(perData);
     // console.log(perPic);
 
     return (
