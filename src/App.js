@@ -6,6 +6,7 @@ import SpacePage from "./Components/SpacePage/SpacePage";
 import Menu from "./shared/components/Menu";
 import { PrivateRoute, PublicRoute } from "../src/shared/components/ProtectedRoute";
 import ErrorBoundary from "./shared/components/ErrBoundry";
+import SignInPage from "./shared/functions/SignIn";
 
 function App() {
     return (
@@ -30,6 +31,10 @@ function App() {
                     <Route
                         path="/space"
                         element={<PrivateRoute component={<SpacePage />} />}
+                    ></Route>
+                    <Route
+                        path="/signin"
+                        element={<PrivateRoute component={<SignInPage />} />}
                     ></Route>
                     <Route path="*" element={<Navigate to="/earth" />}></Route>
                 </Routes>
