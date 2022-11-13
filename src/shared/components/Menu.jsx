@@ -31,7 +31,7 @@ const Menu = ({ setDate }) => {
                         </MenuLink>
                         {!auth.currentUser && (
                             <MenuLink className="link" to="/signin">
-                                Sign In
+                                Favorites
                             </MenuLink>
                         )}
                         {auth.currentUser && (

@@ -10,7 +10,7 @@ const provider = new GoogleAuthProvider();
 function SignIn({ setUser }) {
     let navigate = useNavigate();
     const signinRedirect = () => {
-        let path = "/earth";
+        let path = "/favorites";
         navigate(path);
     };
     async function signIn() {
