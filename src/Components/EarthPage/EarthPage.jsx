@@ -13,8 +13,9 @@ import { useSelector } from "react-redux";
 import { FlexContainer } from "../../shared/styled/FlexContainer";
 import { H3 } from "../../shared/styled/Headers";
 import moment from "moment";
+import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
 
-function EarthPage() {
+function EarthPage({ removeFavorite, addFavorite, favorites }) {
     const date = useSelector((state) => state.date);
 
     const {
@@ -49,6 +50,9 @@ function EarthPage() {
                         )}/png/${imageData[0].file_name}.png?api_key=${
                             process.env.REACT_APP_NASA_API_KEY
                         }`}
+                        isFavorite={favorites.some((fave) => fave.date === date)}
+                        addFavorite={addFavorite}
+                        removeFavorite={removeFavorite}
                     />
                 )}
             </FlexContainer>
@@ -89,11 +93,14 @@ function EarthPage() {
 
 const mapDispatchToProps = (dispatch) => ({
     setSearchResults: (results) => dispatch(setEarthImage(results)),
+    removeFavorite: (hold) => dispatch(removeFavorite(hold)),
+    addFavorite: (hold) => dispatch(addFavorite(hold)),
 });
 
 const mapStateToProps = (state) => ({
     searchResults: state.earthPicture,
     date: state.date,
+    favorites: state.favorites,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EarthPage);

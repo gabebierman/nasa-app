@@ -13,8 +13,9 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import parseCurData from "./functions/parseCurData";
 import parsePerData from "./functions/parsePerData";
+import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
 
-function MarsPage() {
+function MarsPage({ removeFavorite, addFavorite, favorites }) {
     let navigate = useNavigate();
     const routeChange = () => {
         let path = "/landing";
@@ -47,7 +48,14 @@ function MarsPage() {
                 {curSuccess &&
                     curData.length > 0 &&
                     curPic.map((val) => (
-                        <MarsCuriosityDisplay key={val.id} cam_name={val.cam} link={val.img} />
+                        <MarsCuriosityDisplay
+                            key={val.id}
+                            cam_name={val.cam}
+                            link={val.img}
+                            addFavorite={addFavorite}
+                            removeFavorite={removeFavorite}
+                            isFavorite={favorites.some((fave) => fave.hold === val.hold)}
+                        />
                     ))}
                 {curSuccess && curData.length === 0 && <p>no pictures today</p>}
                 <H3>Pictures from Perserverance on {moment(date).format("MM-DD-YYYY")}</H3>
@@ -58,6 +66,9 @@ function MarsPage() {
                             key={val.id}
                             cam_name={val.cam}
                             link={val.img}
+                            addFavorite={addFavorite}
+                            removeFavorite={removeFavorite}
+                            isFavorite={favorites.some((fave) => fave.gif_id === val.gif_id)}
                         />
                     ))}
                 {curSuccess && curData.length === 0 && <p>no pictures today</p>}
@@ -65,10 +76,14 @@ function MarsPage() {
         </>
     );
 }
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+    removeFavorite: (hold) => dispatch(removeFavorite(hold)),
+    addFavorite: (hold) => dispatch(addFavorite(hold)),
+});
 
 const mapStateToProps = (state) => ({
     date: state.date,
+    favorites: state.favorites,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarsPage);
