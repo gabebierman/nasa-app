@@ -8,19 +8,18 @@ import { PrivateRoute, PublicRoute } from "../src/shared/components/ProtectedRou
 import ErrorBoundary from "./shared/components/ErrBoundry";
 import SignInPage from "./shared/functions/SignIn";
 import FavoritesPage from "./Components/FavoritesPage/FavoritesPage";
+import SignIn from "./shared/functions/SignIn";
 
 function App() {
     return (
         <>
             <Router>
-                {/* <ErrorBoundary /> */}
                 <Menu />
-
                 <Routes>
                     <Route path="/earth" element=<EarthPage />></Route>
                     <Route path="/mars" element=<MarsPage />></Route>
                     <Route path="/space" element=<SpacePage />></Route>
-                    <Route path="/signin" element=<SignInPage />></Route>
+                    <Route path="/signin" element=<SignIn />></Route>
                     <Route
                         path="/favorites"
                         element={<PrivateRoute component={<FavoritesPage />} />}

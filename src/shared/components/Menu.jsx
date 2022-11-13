@@ -30,7 +30,7 @@ const Menu = ({ setDate }) => {
                             Space
                         </MenuLink>
                         {!auth.currentUser && (
-                            <MenuLink className="link" onClick={() => signIn()}>
+                            <MenuLink className="link" to="/signin">
                                 Sign In
                             </MenuLink>
                         )}
