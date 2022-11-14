@@ -14,6 +14,7 @@ function FavoritesDisplay({
     favorites,
     title,
     explanation,
+    img_url,
 }) {
     return (
         <div key={id || title}>
@@ -29,14 +30,20 @@ function FavoritesDisplay({
                     <H5>{date}</H5>
                 </>
             )}
+            {!cam_name && !title && (
+                <>
+                    <H5>{date}</H5>
+                </>
+            )}
             <FlexContainer>
-                <Img src={link}></Img>
+                {link && !img_url && <Img src={link}></Img>}
+                {!link && img_url && <Img src={img_url}></Img>}
                 {!cam_name && title && <p style={{ fontSize: "14px" }}>{explanation}</p>}
                 {isFavorite && (
                     <button
                         onClick={() => {
                             removeFavorite(id || title);
-                            console.log(id || title);
+                            console.log(id || title || img_url);
                         }}
                     >
                         Remove from favorites

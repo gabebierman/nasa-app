@@ -15,7 +15,7 @@ import { H3 } from "../../shared/styled/Headers";
 import moment from "moment";
 import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
 
-function EarthPage({ removeFavorite, addFavorite, favorites }) {
+function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
     const date = useSelector((state) => state.date);
 
     const {
@@ -42,6 +42,7 @@ function EarthPage({ removeFavorite, addFavorite, favorites }) {
                 {imageDataSuccess && imageData.length === 0 && <p>no picture for today</p>}
                 {imageDataSuccess && imageData.length > 0 && (
                     <EPICDisplay
+                        key={id}
                         date={moment(date).format("MM-DD-YYYY")}
                         image_file={imageData[0].file_name}
                         img_url={`https://api.nasa.gov/EPIC/archive/natural/${moment(
@@ -51,7 +52,8 @@ function EarthPage({ removeFavorite, addFavorite, favorites }) {
                         )}/png/${imageData[0].file_name}.png?api_key=${
                             process.env.REACT_APP_NASA_API_KEY
                         }`}
-                        isFavorite={favorites.some((e) => e.img_url === img_url)}
+                        id={imageData[0].file_name}
+                        isFavorite={favorites.some((e) => e.id === id)}
                         addFavorite={addFavorite}
                         removeFavorite={removeFavorite}
                     />
@@ -94,8 +96,8 @@ function EarthPage({ removeFavorite, addFavorite, favorites }) {
 
 const mapDispatchToProps = (dispatch) => ({
     setSearchResults: (results) => dispatch(setEarthImage(results)),
-    removeFavorite: (hold) => dispatch(removeFavorite(hold)),
-    addFavorite: (hold) => dispatch(addFavorite(hold)),
+    removeFavorite: (id) => dispatch(removeFavorite(id)),
+    addFavorite: (id) => dispatch(addFavorite(id)),
 });
 
 const mapStateToProps = (state) => ({

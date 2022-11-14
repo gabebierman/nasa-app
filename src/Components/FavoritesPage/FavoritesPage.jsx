@@ -5,7 +5,16 @@ import { auth } from "../../firebase.config";
 import { connect } from "react-redux";
 import { removeFavorite } from "../../shared/redux/slices/favoritesSlice";
 
-function FavoritesPage({ cam_name, link, id, favorites, removeFavorite, date, title }) {
+function FavoritesPage({
+    cam_name,
+    link,
+    id,
+    favorites,
+    removeFavorite,
+    date,
+    title,
+    img_url,
+}) {
     return (
         <FlexContainer>
             {favorites.length < 1 && (
@@ -18,6 +27,7 @@ function FavoritesPage({ cam_name, link, id, favorites, removeFavorite, date, ti
                         explanation={e.explanation}
                         key={e.id}
                         id={e.id}
+                        img_url={e.img_url}
                         isFavorite={true}
                         removeFavorite={removeFavorite}
                         link={e.link}

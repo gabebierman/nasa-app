@@ -3,22 +3,20 @@ import { FlexContainer } from "../../../shared/styled/FlexContainer";
 import { H3 } from "../../../shared/styled/Headers";
 import { Img } from "../../../shared/styled/Img";
 
-function EPICDisplay({ img_url, date, isFavorite, removeFavorite, addFavorite }) {
+function EPICDisplay({ img_url, date, isFavorite, removeFavorite, addFavorite, id }) {
     return (
-        <>
+        <div key={id}>
             <H3>Earth on {date}</H3>
             <FlexContainer>
                 <Img src={img_url}></Img>
                 {isFavorite && (
-                    <button onClick={(img_url) => removeFavorite(img_url)}>
-                        Remove image from favorites
-                    </button>
+                    <button onClick={(id) => removeFavorite(id)}>Remove from favorites</button>
                 )}
                 {!isFavorite && (
                     <button
                         onClick={() => {
-                            addFavorite({ img_url, date });
-                            console.log(img_url);
+                            addFavorite({ id, date, img_url });
+                            console.log(id);
                             console.log(date);
                         }}
                     >
@@ -26,7 +24,7 @@ function EPICDisplay({ img_url, date, isFavorite, removeFavorite, addFavorite })
                     </button>
                 )}
             </FlexContainer>
-        </>
+        </div>
     );
 }
 
