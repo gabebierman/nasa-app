@@ -10,24 +10,29 @@ function MarsPerseveranceDisplay({
     removeFavorite,
     date,
     addFavorite,
+    id,
+    favorites,
 }) {
     return (
-        <>
+        <div key={id}>
             <H4>{cam_name}</H4>
             <FlexContainer>
                 <Img src={link}></Img>
                 {isFavorite && (
-                    <button onClick={(hold) => removeFavorite(hold)}>
-                        Add image to favorites
-                    </button>
+                    <button onClick={() => removeFavorite(id)}>Remove from favorites</button>
                 )}
                 {!isFavorite && (
-                    <button onClick={() => addFavorite({ cam_name, link, date })}>
-                        Add Favorite
+                    <button
+                        onClick={() => {
+                            addFavorite({ cam_name, link, date, id });
+                            console.log(cam_name, date, link, id);
+                        }}
+                    >
+                        Add to favorites
                     </button>
                 )}
             </FlexContainer>
-        </>
+        </div>
     );
 }
 

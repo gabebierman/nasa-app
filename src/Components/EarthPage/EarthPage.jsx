@@ -34,6 +34,7 @@ function EarthPage({ removeFavorite, addFavorite, favorites }) {
         isSuccess: neoSuccess,
         isLoading: neoLoading,
     } = useGetNearEarthObjectQuery(`${date}`);
+    let img_url;
 
     return (
         <>
@@ -43,14 +44,14 @@ function EarthPage({ removeFavorite, addFavorite, favorites }) {
                     <EPICDisplay
                         date={moment(date).format("MM-DD-YYYY")}
                         image_file={imageData[0].file_name}
-                        image_link={`https://api.nasa.gov/EPIC/archive/natural/${moment(
+                        img_url={`https://api.nasa.gov/EPIC/archive/natural/${moment(
                             date
                         ).format("YYYY")}/${moment(date).format("MM")}/${moment(date).format(
                             "DD"
                         )}/png/${imageData[0].file_name}.png?api_key=${
                             process.env.REACT_APP_NASA_API_KEY
                         }`}
-                        isFavorite={favorites.some((fave) => fave.date === date)}
+                        isFavorite={favorites.some((e) => e.img_url === img_url)}
                         addFavorite={addFavorite}
                         removeFavorite={removeFavorite}
                     />

@@ -9,18 +9,12 @@ import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { FlexContainer } from "../../shared/styled/FlexContainer";
 import { H1, H3 } from "../../shared/styled/Headers";
-import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import parseCurData from "./functions/parseCurData";
 import parsePerData from "./functions/parsePerData";
 import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
 
 function MarsPage({ removeFavorite, addFavorite, favorites }) {
-    let navigate = useNavigate();
-    const routeChange = () => {
-        let path = "/landing";
-        navigate(path);
-    };
     const date = useSelector((state) => state.date);
     let curPic;
     const {
@@ -50,11 +44,14 @@ function MarsPage({ removeFavorite, addFavorite, favorites }) {
                     curPic.map((val) => (
                         <MarsCuriosityDisplay
                             key={val.id}
+                            id={val.id}
                             cam_name={val.cam}
                             link={val.img}
+                            date={moment(date).format("MM-DD-YYYY")}
+                            isFavorite={favorites.some((fave) => fave.id === val.id)}
                             addFavorite={addFavorite}
                             removeFavorite={removeFavorite}
-                            isFavorite={favorites.some((fave) => fave.hold === val.hold)}
+                            favorites={favorites}
                         />
                     ))}
                 {curSuccess && curData.length === 0 && <p>no pictures today</p>}
@@ -64,11 +61,14 @@ function MarsPage({ removeFavorite, addFavorite, favorites }) {
                     perPic.map((val) => (
                         <MarsPerseveranceDisplay
                             key={val.id}
+                            id={val.id}
                             cam_name={val.cam}
                             link={val.img}
+                            date={moment(date).format("MM-DD-YYYY")}
+                            isFavorite={favorites.some((fave) => fave.id === val.id)}
                             addFavorite={addFavorite}
                             removeFavorite={removeFavorite}
-                            isFavorite={favorites.some((fave) => fave.gif_id === val.gif_id)}
+                            favorites={favorites}
                         />
                     ))}
                 {curSuccess && curData.length === 0 && <p>no pictures today</p>}
@@ -77,8 +77,8 @@ function MarsPage({ removeFavorite, addFavorite, favorites }) {
     );
 }
 const mapDispatchToProps = (dispatch) => ({
-    removeFavorite: (hold) => dispatch(removeFavorite(hold)),
-    addFavorite: (hold) => dispatch(addFavorite(hold)),
+    removeFavorite: (id) => dispatch(removeFavorite(id)),
+    addFavorite: (id) => dispatch(addFavorite(id)),
 });
 
 const mapStateToProps = (state) => ({

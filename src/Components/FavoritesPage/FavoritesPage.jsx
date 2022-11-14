@@ -3,9 +3,9 @@ import FavoritesDisplay from "./FavoritesDisplay";
 import { FlexContainer } from "../../shared/styled/FlexContainer";
 import { auth } from "../../firebase.config";
 import { connect } from "react-redux";
-import { favoritesReducer, removeFavorite } from "../../shared/redux/slices/favoritesSlice";
+import { removeFavorite } from "../../shared/redux/slices/favoritesSlice";
 
-function FavoritesPage({ hold, favorites, removeFavorite }) {
+function FavoritesPage({ cam_name, link, id, favorites, removeFavorite, date }) {
     return (
         <FlexContainer>
             {favorites.length < 1 && (
@@ -14,9 +14,13 @@ function FavoritesPage({ hold, favorites, removeFavorite }) {
             {favorites.length !== 0 &&
                 favorites.map((e) => (
                     <FavoritesDisplay
-                        key={hold}
+                        key={e.id}
+                        id={e.id}
                         isFavorite={true}
                         removeFavorite={removeFavorite}
+                        link={e.link}
+                        date={e.date}
+                        cam_name={e.cam_name}
                     />
                 ))}
         </FlexContainer>
@@ -24,7 +28,7 @@ function FavoritesPage({ hold, favorites, removeFavorite }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    removeFavorite: (hold) => dispatch(removeFavorite(hold)),
+    removeFavorite: (id) => dispatch(removeFavorite(id)),
 });
 
 const mapStateToProps = (state) => ({

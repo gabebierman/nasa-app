@@ -5,8 +5,7 @@ export const favoritesSlice = createSlice({
     initialState: [],
     reducers: {
         addFavorite: (state, action) => [...state, action.payload],
-        removeFavorite: (state, action) =>
-            state.filter((val) => val.gif_id !== action.payload),
+        removeFavorite: (state, action) => state.filter((val) => val.id !== action.payload),
         clearFavorites: () => [],
     },
 });
