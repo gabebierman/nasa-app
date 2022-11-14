@@ -5,7 +5,7 @@ import { Img } from "../../../shared/styled/Img";
 
 function APODDisplay({
     explanation,
-    url,
+    link,
     title,
     isFavorite,
     removeFavorite,
@@ -13,24 +13,24 @@ function APODDisplay({
     addFavorite,
 }) {
     return (
-        <>
+        <div key={title}>
             <H1>Astronomy Picture of the Day</H1>
             <H3>{title}</H3>
             <FlexContainer>
-                <Img src={url} />
+                <Img src={link} />
                 <p>{explanation}</p>
                 {isFavorite && (
                     <button onClick={(hold) => removeFavorite(hold)}>
-                        Add image to favorites
+                        Remove from favorites
                     </button>
                 )}
                 {!isFavorite && (
-                    <button onClick={() => addFavorite({ explanation, title, url, date })}>
-                        Add Favorite
+                    <button onClick={() => addFavorite({ explanation, title, link, date })}>
+                        Add to favorites
                     </button>
                 )}
             </FlexContainer>
-        </>
+        </div>
     );
 }
 

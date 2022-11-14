@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { FlexContainer } from "../../shared/styled/FlexContainer";
 import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
+import moment from "moment";
 
 function SpacePage({ removeFavorite, addFavorite, favorites }) {
     const date = useSelector((state) => state.date);
@@ -19,13 +20,14 @@ function SpacePage({ removeFavorite, addFavorite, favorites }) {
             {APODdata &&
                 APODarray.map((e) => (
                     <APODDisplay
-                        key={e.date}
+                        key={e.title}
+                        date={moment(date).format("MM-DD-YYYY")}
                         explanation={e.explanation}
                         title={e.title}
-                        url={e.url}
+                        link={e.url}
+                        isFavorite={favorites.some((fave) => fave.hold === e.hold)}
                         addFavorite={addFavorite}
                         removeFavorite={removeFavorite}
-                        isFavorite={favorites.some((fave) => fave.hold === e.hold)}
                     />
                 ))}
         </>
