@@ -17,7 +17,7 @@ function FavoritesDisplay({
     img_url,
 }) {
     return (
-        <div key={id || title}>
+        <div key={id}>
             {cam_name && !title && (
                 <>
                     <H4>{cam_name}</H4>
@@ -42,7 +42,7 @@ function FavoritesDisplay({
                 {isFavorite && (
                     <button
                         onClick={() => {
-                            removeFavorite(id || title);
+                            removeFavorite(id);
                             console.log(id || title || img_url);
                         }}
                     >

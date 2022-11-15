@@ -21,6 +21,7 @@ function SpacePage({ removeFavorite, addFavorite, favorites }) {
                 APODarray.map((e) => (
                     <APODDisplay
                         key={e.title}
+                        id={e.title}
                         date={moment(date).format("MM-DD-YYYY")}
                         explanation={e.explanation}
                         title={e.title}

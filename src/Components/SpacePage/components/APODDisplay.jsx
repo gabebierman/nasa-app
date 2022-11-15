@@ -11,9 +11,10 @@ function APODDisplay({
     removeFavorite,
     date,
     addFavorite,
+    id,
 }) {
     return (
-        <div key={title}>
+        <div key={id}>
             <H1>Astronomy Picture of the Day</H1>
             <H3>{title}</H3>
             <FlexContainer>
