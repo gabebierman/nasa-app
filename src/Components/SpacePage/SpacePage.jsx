@@ -26,7 +26,7 @@ function SpacePage({ removeFavorite, addFavorite, favorites }) {
                         explanation={e.explanation}
                         title={e.title}
                         link={e.url}
-                        isFavorite={favorites.some((fave) => fave.hold === e.hold)}
+                        isFavorite={favorites.some((fave) => fave.title === e.title)}
                         addFavorite={addFavorite}
                         removeFavorite={removeFavorite}
                     />
@@ -36,8 +36,8 @@ function SpacePage({ removeFavorite, addFavorite, favorites }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    removeFavorite: (hold) => dispatch(removeFavorite(hold)),
-    addFavorite: (hold) => dispatch(addFavorite(hold)),
+    removeFavorite: (title) => dispatch(removeFavorite(title)),
+    addFavorite: (title) => dispatch(addFavorite(title)),
 });
 
 const mapStateToProps = (state) => ({

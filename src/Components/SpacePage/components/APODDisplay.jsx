@@ -21,12 +21,14 @@ function APODDisplay({
                 <Img src={link} />
                 <p>{explanation}</p>
                 {isFavorite && (
-                    <button onClick={(hold) => removeFavorite(hold)}>
+                    <button onClick={() => removeFavorite(title)}>
                         Remove from favorites
                     </button>
                 )}
                 {!isFavorite && (
-                    <button onClick={() => addFavorite({ explanation, title, link, date })}>
+                    <button
+                        onClick={() => addFavorite({ explanation, title, link, date, id })}
+                    >
                         Add to favorites
                     </button>
                 )}
