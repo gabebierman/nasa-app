@@ -1,6 +1,6 @@
 import React from "react";
 import FavoritesDisplay from "./FavoritesDisplay";
-import { FlexContainer } from "../../shared/styled/FlexContainer";
+import { FlexContainerCol } from "../../shared/styled/FlexContainerCol";
 import { auth } from "../../firebase.config";
 import { connect } from "react-redux";
 import { removeFavorite } from "../../shared/redux/slices/favoritesSlice";
@@ -16,7 +16,7 @@ function FavoritesPage({
     img_url,
 }) {
     return (
-        <FlexContainer>
+        <FlexContainerCol>
             {favorites.length < 1 && (
                 <div>No favorites to show for {auth.currentUser?.displayName}</div>
             )}
@@ -35,7 +35,7 @@ function FavoritesPage({
                         cam_name={e.cam_name}
                     />
                 ))}
-        </FlexContainer>
+        </FlexContainerCol>
     );
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
-import { FlexContainer } from "../../../shared/styled/FlexContainer";
+import { Button } from "../../../shared/styled/button";
+import { FlexContainerCol } from "../../../shared/styled/FlexContainerCol";
 import { H1, H3, H6 } from "../../../shared/styled/Headers";
 import { Img } from "../../../shared/styled/Img";
 
@@ -17,22 +18,22 @@ function APODDisplay({
         <div key={id}>
             <H1>Astronomy Picture of the Day</H1>
             <H3>{title}</H3>
-            <FlexContainer>
+            <FlexContainerCol>
                 <Img src={link} />
                 <p>{explanation}</p>
                 {isFavorite && (
-                    <button onClick={() => removeFavorite(title)}>
+                    <Button onClick={() => removeFavorite(title)}>
                         Remove from favorites
-                    </button>
+                    </Button>
                 )}
                 {!isFavorite && (
-                    <button
+                    <Button
                         onClick={() => addFavorite({ explanation, title, link, date, id })}
                     >
                         Add to favorites
-                    </button>
+                    </Button>
                 )}
-            </FlexContainer>
+            </FlexContainerCol>
         </div>
     );
 }

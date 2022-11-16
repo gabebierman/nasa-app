@@ -1,5 +1,6 @@
 import React from "react";
-import { FlexContainer } from "../../../shared/styled/FlexContainer";
+import { Button } from "../../../shared/styled/button";
+import { FlexContainerCol } from "../../../shared/styled/FlexContainerCol";
 import { H3, H4 } from "../../../shared/styled/Headers";
 import { Img } from "../../../shared/styled/Img";
 
@@ -16,22 +17,22 @@ function MarsPerseveranceDisplay({
     return (
         <div key={id}>
             <H4>{cam_name}</H4>
-            <FlexContainer>
+            <FlexContainerCol>
                 <Img src={link}></Img>
                 {isFavorite && (
-                    <button onClick={() => removeFavorite(id)}>Remove from favorites</button>
+                    <Button onClick={() => removeFavorite(id)}>Remove from favorites</Button>
                 )}
                 {!isFavorite && (
-                    <button
+                    <Button
                         onClick={() => {
                             addFavorite({ cam_name, link, date, id });
                             console.log(cam_name, date, link, id);
                         }}
                     >
                         Add to favorites
-                    </button>
+                    </Button>
                 )}
-            </FlexContainer>
+            </FlexContainerCol>
         </div>
     );
 }

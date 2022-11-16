@@ -10,7 +10,8 @@ import {
 } from "../../shared/redux/RTKquery/nasaApiSlice";
 import { setEarthImage } from "../../shared/redux/slices/earthPictureSlice";
 import { useSelector } from "react-redux";
-import { FlexContainer } from "../../shared/styled/FlexContainer";
+import { FlexContainerCol } from "../../shared/styled/FlexContainerCol";
+import { FlexContainerRow } from "../../shared/styled/FlexContainerRow";
 import { H3 } from "../../shared/styled/Headers";
 import moment from "moment";
 import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
@@ -36,9 +37,11 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
     } = useGetNearEarthObjectQuery(`${date}`);
     let img_url;
 
+    // const neoDataFilter = neoData.filter((e) => e.hazardous === true);
+
     return (
         <>
-            <FlexContainer>
+            <FlexContainerCol>
                 {imageDataSuccess && imageData.length === 0 && <p>no picture for today</p>}
                 {imageDataSuccess && imageData.length > 0 && (
                     <EPICDisplay
@@ -58,14 +61,16 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
                         removeFavorite={removeFavorite}
                     />
                 )}
-            </FlexContainer>
-            {eventSuccess && (
-                <H3>
-                    Some major weather and geological events that happened on{" "}
-                    {moment(date).format("MM-DD-YYYY")}
-                </H3>
-            )}
-            <FlexContainer>
+            </FlexContainerCol>
+            <FlexContainerRow>
+                {eventSuccess && (
+                    <H3>
+                        Some major weather and geological events that happened on{" "}
+                        {moment(date).format("MM-DD-YYYY")}
+                    </H3>
+                )}
+            </FlexContainerRow>
+            <FlexContainerRow>
                 {eventError && <h2>EONET error</h2>}
                 {eventSuccess &&
                     eventData.map((val) => (
@@ -77,8 +82,8 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
                             event_type={val.event_type}
                         />
                     ))}
-            </FlexContainer>
-            <FlexContainer>
+            </FlexContainerRow>
+            <FlexContainerCol>
                 {neoError && <h3>NEO error</h3>}
                 {neoLoading && <h3>Loading NEO data...</h3>}
                 {neoSuccess &&
@@ -89,7 +94,7 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
                             hazardous={val.hazardous}
                         />
                     ))}
-            </FlexContainer>
+            </FlexContainerCol>
         </>
     );
 }

@@ -7,7 +7,6 @@ import {
 } from "../../shared/redux/RTKquery/nasaApiSlice";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
-import { FlexContainer } from "../../shared/styled/FlexContainer";
 import { H1, H3 } from "../../shared/styled/Headers";
 import moment from "moment";
 import parseCurData from "./functions/parseCurData";

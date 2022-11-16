@@ -1,5 +1,6 @@
 import React from "react";
-import { FlexContainer } from "../../shared/styled/FlexContainer";
+import { Button } from "../../shared/styled/button";
+import { FlexContainerCol } from "../../shared/styled/FlexContainerCol";
 import { H3, H4, H5, H6 } from "../../shared/styled/Headers";
 import { Img } from "../../shared/styled/Img";
 
@@ -35,21 +36,21 @@ function FavoritesDisplay({
                     <H5>{date}</H5>
                 </>
             )}
-            <FlexContainer>
+            <FlexContainerCol>
                 {link && !img_url && <Img src={link}></Img>}
                 {!link && img_url && <Img src={img_url}></Img>}
                 {!cam_name && title && <p style={{ fontSize: "14px" }}>{explanation}</p>}
                 {isFavorite && (
-                    <button
+                    <Button
                         onClick={() => {
                             removeFavorite(id);
                             console.log(id || title || img_url);
                         }}
                     >
                         Remove from favorites
-                    </button>
+                    </Button>
                 )}
-            </FlexContainer>
+            </FlexContainerCol>
         </div>
     );
 }

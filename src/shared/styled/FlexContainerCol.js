@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
-export const FlexContainer = styled.div((props) => ({
+export const FlexContainerCol = styled.div((props) => ({
     display: "flex",
-    flexDirection: props.column && "row",
+    flexDirection: "column",
     flexWrap: "wrap",
     margin: "5px",
     "&>*": {
@@ -26,7 +26,7 @@ export const FlexContainer = styled.div((props) => ({
             flexBasis: getBasis(props, "lg"),
         },
     },
-    justifyContent: "space-around",
+    alignItems: "center",
 }));
 
 function getBasis(props, size) {
