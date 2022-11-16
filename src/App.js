@@ -8,6 +8,7 @@ import { PrivateRoute, PublicRoute } from "../src/shared/components/ProtectedRou
 import ErrorBoundary from "./shared/components/ErrBoundry";
 import SignIn from "../src/shared/components/SignIn";
 import FavoritesPage from "./Components/FavoritesPage/FavoritesPage";
+import Footer from "./shared/components/Footer";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                     ></Route>
                     <Route path="*" element={<Navigate to="/earth" />}></Route>
                 </Routes>
+                <Footer />
             </Router>
         </>
     );

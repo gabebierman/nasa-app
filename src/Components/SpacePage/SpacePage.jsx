@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { FlexContainerCol } from "../../shared/styled/FlexContainerCol";
 import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
 import moment from "moment";
+import { H2 } from "../../shared/styled/Headers";
 
 function SpacePage({ removeFavorite, addFavorite, favorites }) {
     const date = useSelector((state) => state.date);
@@ -13,11 +14,14 @@ function SpacePage({ removeFavorite, addFavorite, favorites }) {
         data: APODdata,
         error: APODerror,
         isSuccess: APODsuccess,
+        isLoading: APODloading,
     } = useGetAPODQuery(`${date}`);
     const APODarray = [APODdata];
     return (
         <>
+            {APODloading && <H2>Getting latest information..</H2>}
             {APODdata &&
+                !APODloading &&
                 APODarray.map((e) => (
                     <APODDisplay
                         key={e.title}
