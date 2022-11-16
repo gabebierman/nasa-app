@@ -4,7 +4,7 @@ export const EONETFlex = styled.div((props) => ({
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
-    margin: "5px",
+    margin: "10px",
     flexBasis: "(100% / 3)",
     alignItems: "center",
     padding: "3%",

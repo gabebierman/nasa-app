@@ -37,8 +37,6 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
     } = useGetNearEarthObjectQuery(`${date}`);
     let img_url;
 
-    // const neoDataFilter = neoData.filter((e) => e.hazardous === true);
-
     return (
         <>
             <FlexContainerCol>
@@ -63,6 +61,7 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
                 )}
             </FlexContainerCol>
             <FlexContainerRow>
+                {eventError && <h3>Error Loading Data</h3>}
                 {eventSuccess && (
                     <H3>
                         Some major weather and geological events that happened on{" "}
@@ -71,7 +70,6 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
                 )}
             </FlexContainerRow>
             <FlexContainerRow>
-                {eventError && <h2>EONET error</h2>}
                 {eventSuccess &&
                     eventData.map((val) => (
                         <EONETDisplay
@@ -84,16 +82,18 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
                     ))}
             </FlexContainerRow>
             <FlexContainerCol>
-                {neoError && <h3>NEO error</h3>}
-                {neoLoading && <h3>Loading NEO data...</h3>}
+                {neoError && <h3>Error Loading Data</h3>}
                 {neoSuccess &&
-                    neoData.map((val) => (
-                        <NeoWsDisplay
-                            key={val.neo_id}
-                            id={val.neo_id}
-                            hazardous={val.hazardous}
-                        />
-                    ))}
+                    neoData
+                        .filter((e) => e.hazardous === true)
+                        .map((val) => (
+                            <NeoWsDisplay
+                                key={val.neo_id}
+                                id={val.neo_id}
+                                hazardous={val.hazardous}
+                                name={val.name}
+                            />
+                        ))}
             </FlexContainerCol>
         </>
     );

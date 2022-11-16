@@ -4,7 +4,7 @@ export const FlexContainerCol = styled.div((props) => ({
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
-    margin: "5px",
+    margin: "10px",
     "&>*": {
         flexBasis: getBasis(props),
     },

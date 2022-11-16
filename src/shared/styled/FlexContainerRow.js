@@ -4,7 +4,7 @@ export const FlexContainerRow = styled.div((props) => ({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    margin: "5px",
+    margin: "10px",
     "&>*": {
         flexBasis: getBasis(props),
     },

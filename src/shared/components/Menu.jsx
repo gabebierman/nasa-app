@@ -8,6 +8,7 @@ import { LowerNav } from "../styled/LowerNav";
 import { Nav } from "../styled/Nav";
 import { MenuLink } from "../styled/NavLink";
 import signIn from "../functions/SignIn";
+import { Button } from "../styled/button";
 
 const Menu = ({ setDate }) => {
     const [searchDate, setSearchDate] = useState(
@@ -55,14 +56,15 @@ const Menu = ({ setDate }) => {
                     ></input>
                 </div>
                 <div style={{ margin: "0px 5px" }}>
-                    <button
+                    <Button
+                        style={{ borderColor: "white" }}
                         onClick={() => {
                             setDate(searchDate);
                             console.log(searchDate);
                         }}
                     >
                         search
-                    </button>
+                    </Button>
                 </div>
             </LowerNav>
         </>
