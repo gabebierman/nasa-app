@@ -7,7 +7,7 @@ import { clearDate, setDate } from "../redux/slices/dateSlice";
 import { LowerNav } from "../styled/LowerNav";
 import { Nav } from "../styled/Nav";
 import { MenuLink } from "../styled/NavLink";
-import signIn from "../functions/SignIn";
+import signIn from "./SignIn";
 import { Button } from "../styled/button";
 
 const Menu = ({ setDate }) => {

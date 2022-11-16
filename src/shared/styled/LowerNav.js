@@ -6,5 +6,5 @@ export const LowerNav = styled("nav")((props) => ({
     justifyContent: "center",
     backgroundColor: props.theme.colors.primary,
     color: "white",
-    padding: "5px",
+    padding: "5px 0px 0px 0px",
 }));

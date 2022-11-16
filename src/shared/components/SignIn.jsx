@@ -4,6 +4,10 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { setUser } from "../redux/slices/userSlice";
 import { connect } from "react-redux";
 import { Navigate, redirect, useNavigate } from "react-router-dom";
+import { FlexContainerCol } from "../styled/FlexContainerCol";
+import { H2, H4 } from "../styled/Headers";
+import { Button } from "../styled/button";
+import { SignInLink } from "../styled/signInLink";
 
 const provider = new GoogleAuthProvider();
 
@@ -26,10 +30,14 @@ function SignIn({ setUser }) {
         }
     }
     return (
-        <>
-            <div>sign in </div>
-            <button onClick={() => signIn()}>sign in</button>
-        </>
+        <FlexContainerCol>
+            <H2>
+                <SignInLink onClick={() => signIn()}>
+                    Sign in with Google to view and save favorites
+                </SignInLink>
+            </H2>
+            {/* <Button onClick={() => signIn()}>sign in</Button> */}
+        </FlexContainerCol>
     );
 }
 

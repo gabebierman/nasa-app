@@ -6,9 +6,8 @@ import SpacePage from "./Components/SpacePage/SpacePage";
 import Menu from "./shared/components/Menu";
 import { PrivateRoute, PublicRoute } from "../src/shared/components/ProtectedRoute";
 import ErrorBoundary from "./shared/components/ErrBoundry";
-import SignInPage from "./shared/functions/SignIn";
+import SignIn from "../src/shared/components/SignIn";
 import FavoritesPage from "./Components/FavoritesPage/FavoritesPage";
-import SignIn from "./shared/functions/SignIn";
 
 function App() {
     return (
