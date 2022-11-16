@@ -9,6 +9,8 @@ import { Nav } from "../styled/Nav";
 import { MenuLink } from "../styled/NavLink";
 import signIn from "./SignIn";
 import { Button } from "../styled/button";
+import getRandomDate from "../functions/getRandomDate";
+import momentRandom from "moment-random";
 
 const Menu = ({ setDate }) => {
     const [searchDate, setSearchDate] = useState(
@@ -64,6 +66,25 @@ const Menu = ({ setDate }) => {
                         }}
                     >
                         search
+                    </Button>
+                </div>
+                <div style={{ margin: "0px 5px" }}>or pick a </div>
+                <div style={{ margin: "0px 5px" }}>
+                    <Button
+                        style={{ borderColor: "white" }}
+                        onClick={() => {
+                            // setDate(getRandomDate());
+                            console.log(
+                                setDate(
+                                    momentRandom(
+                                        moment().subtract(2, "days").format("YYYY-MM-DD"),
+                                        "2017-09-01"
+                                    ).format("YYYY-MM-DD")
+                                )
+                            );
+                        }}
+                    >
+                        random date
                     </Button>
                 </div>
             </LowerNav>
