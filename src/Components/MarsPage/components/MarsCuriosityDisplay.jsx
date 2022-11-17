@@ -23,8 +23,6 @@ function MarsCuriosityDisplay({
                     <Button
                         onClick={() => {
                             removeFavorite(id);
-                            console.log(id);
-                            console.log(favorites);
                         }}
                     >
                         Remove from favorites
@@ -34,7 +32,6 @@ function MarsCuriosityDisplay({
                     <Button
                         onClick={() => {
                             addFavorite({ cam_name, link, date, id });
-                            console.log(cam_name, date, link, id);
                         }}
                     >
                         Add to favorites

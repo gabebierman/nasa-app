@@ -25,7 +25,6 @@ export function curTest(curData) {
         Math.floor(Math.random() * curMastArr.length);
         return ranMast;
     }
-    console.log(ranMast, "mast");
 
     for (let i = 0; i < curData.length; i++) {
         let navTemp = curData.find((e) => e.cam === "Navigation Camera");
@@ -33,5 +32,4 @@ export function curTest(curData) {
         let random = Math.floor(Math.random() * curNavArr.length);
         ranNav.push(random);
     }
-    console.log(ranNav, "nav");
 }

@@ -44,7 +44,6 @@ function FavoritesDisplay({
                     <Button
                         onClick={() => {
                             removeFavorite(id);
-                            console.log(id || title || img_url);
                         }}
                     >
                         Remove from favorites

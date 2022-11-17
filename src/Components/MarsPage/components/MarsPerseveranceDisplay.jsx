@@ -26,7 +26,6 @@ function MarsPerseveranceDisplay({
                     <Button
                         onClick={() => {
                             addFavorite({ cam_name, link, date, id });
-                            console.log(cam_name, date, link, id);
                         }}
                     >
                         Add to favorites

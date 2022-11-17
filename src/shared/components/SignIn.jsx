@@ -23,7 +23,6 @@ function SignIn({ setUser }) {
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const user = auth.currentUser.uid;
             setUser(user);
-            console.log(user);
             signinRedirect();
         } catch (error) {
             console.error(error);

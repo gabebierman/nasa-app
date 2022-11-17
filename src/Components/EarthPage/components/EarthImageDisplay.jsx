@@ -17,8 +17,6 @@ function EPICDisplay({ img_url, date, isFavorite, removeFavorite, addFavorite, i
                     <Button
                         onClick={() => {
                             addFavorite({ id, date, img_url });
-                            console.log(id);
-                            console.log(date);
                         }}
                     >
                         Add Favorite

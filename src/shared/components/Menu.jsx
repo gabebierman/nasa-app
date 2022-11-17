@@ -62,7 +62,6 @@ const Menu = ({ setDate }) => {
                         style={{ borderColor: "white" }}
                         onClick={() => {
                             setDate(searchDate);
-                            console.log(searchDate);
                         }}
                     >
                         search
@@ -74,13 +73,11 @@ const Menu = ({ setDate }) => {
                         style={{ borderColor: "white" }}
                         onClick={() => {
                             // setDate(getRandomDate());
-                            console.log(
-                                setDate(
-                                    momentRandom(
-                                        moment().subtract(2, "days").format("YYYY-MM-DD"),
-                                        "2017-09-01"
-                                    ).format("YYYY-MM-DD")
-                                )
+                            setDate(
+                                momentRandom(
+                                    moment().subtract(2, "days").format("YYYY-MM-DD"),
+                                    "2017-09-01"
+                                ).format("YYYY-MM-DD")
                             );
                         }}
                     >
