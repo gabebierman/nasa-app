@@ -1,7 +1,7 @@
 import express from "express";
 // import validateGifData from "../middleware/validateGifData";
 // import auth from "../middleware/auth.middleware";
-// import { addFavorite, getByUser, removeFavorite } from "../models/favorites.model";
+import { addFavorite, getByUser, removeFavorite } from "../models/favorites.model.js";
 const router = express.Router();
 
 router.put("/add", async (req, res) => {
