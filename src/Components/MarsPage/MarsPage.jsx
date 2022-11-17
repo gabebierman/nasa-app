@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { H1, H2, H3 } from "../../shared/styled/Headers";
 import moment from "moment";
-import parseCurData from "./functions/parseCurData";
+import parseCurData, { curTest } from "./functions/parseCurData";
 import parsePerData from "./functions/parsePerData";
 import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
 import Footer from "../../shared/components/Footer";
@@ -25,6 +25,7 @@ function MarsPage({ removeFavorite, addFavorite, favorites }) {
     } = useGetMarsImageCuriosityQuery(`${date}`);
     if (curSuccess && curData.length > 0) {
         curPic = parseCurData(curData);
+        curTest(curData);
     }
 
     let perPic;

@@ -1,6 +1,6 @@
 import React from "react";
 
-function parseCurData(curData) {
+export default function parseCurData(curData) {
     let curPic = [];
     const getCurCam = (curData) => {
         let curMast = curData.find((e) => e.cam === "Mast Camera");
@@ -13,4 +13,25 @@ function parseCurData(curData) {
     return curPic;
 }
 
-export default parseCurData;
+export function curTest(curData) {
+    const curMastArr = [];
+    const curNavArr = [];
+    const ranMast = [];
+    const ranNav = [];
+
+    for (let i = 0; i < curData.length; i++) {
+        let mastTemp = curData.find((e) => e.cam === "Mast Camera");
+        curMastArr.push(mastTemp);
+        Math.floor(Math.random() * curMastArr.length);
+        return ranMast;
+    }
+    console.log(ranMast, "mast");
+
+    for (let i = 0; i < curData.length; i++) {
+        let navTemp = curData.find((e) => e.cam === "Navigation Camera");
+        curNavArr.push(navTemp);
+        let random = Math.floor(Math.random() * curNavArr.length);
+        ranNav.push(random);
+    }
+    console.log(ranNav, "nav");
+}
