@@ -3,7 +3,6 @@ import APODDisplay from "./components/APODDisplay";
 import { useGetAPODQuery } from "../../shared/redux/RTKquery/nasaApiSlice";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
-import { FlexContainerCol } from "../../shared/styled/FlexContainerCol";
 import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
 import moment from "moment";
 import { H2 } from "../../shared/styled/Headers";

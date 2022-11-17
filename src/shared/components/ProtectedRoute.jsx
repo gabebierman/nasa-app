@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { setUser } from "../redux/slices/userSlice";
 
 const AuthRoute = ({ requiresUser, component, user }) => {
     const redirectTo = useMemo(() => (requiresUser ? "/earth" : "/favorites"), [requiresUser]);

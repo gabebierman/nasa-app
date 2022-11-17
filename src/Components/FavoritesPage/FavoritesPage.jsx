@@ -4,7 +4,6 @@ import { FlexContainerCol } from "../../shared/styled/FlexContainerCol";
 import { auth } from "../../firebase.config";
 import { connect } from "react-redux";
 import { removeFavorite } from "../../shared/redux/slices/favoritesSlice";
-import Footer from "../../shared/components/Footer";
 
 function FavoritesPage({
     cam_name,

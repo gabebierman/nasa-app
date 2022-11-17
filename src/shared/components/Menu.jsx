@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { auth } from "../../firebase.config";
 import { clearDate, setDate } from "../redux/slices/dateSlice";
 import { LowerNav } from "../styled/LowerNav";
 import { Nav } from "../styled/Nav";
 import { MenuLink } from "../styled/NavLink";
-import signIn from "./SignIn";
 import { Button } from "../styled/button";
-import getRandomDate from "../functions/getRandomDate";
 import momentRandom from "moment-random";
 
 const Menu = ({ setDate }) => {

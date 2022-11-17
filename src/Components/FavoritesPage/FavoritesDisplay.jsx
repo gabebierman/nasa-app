@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../../shared/styled/button";
 import { FlexContainerCol } from "../../shared/styled/FlexContainerCol";
-import { H3, H4, H5, H6 } from "../../shared/styled/Headers";
+import { H4, H5 } from "../../shared/styled/Headers";
 import { Img } from "../../shared/styled/Img";
 
 function FavoritesDisplay({

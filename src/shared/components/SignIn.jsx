@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { auth } from "../../firebase.config";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { setUser } from "../redux/slices/userSlice";
 import { connect } from "react-redux";
-import { Navigate, redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FlexContainerCol } from "../styled/FlexContainerCol";
-import { H2, H4 } from "../styled/Headers";
-import { Button } from "../styled/button";
+import { H2 } from "../styled/Headers";
 import { SignInLink } from "../styled/signInLink";
 
 const provider = new GoogleAuthProvider();

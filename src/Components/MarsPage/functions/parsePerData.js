@@ -1,5 +1,3 @@
-import React from "react";
-
 function parsePerData(perData) {
     let perPic = [];
     const getPerCam = (perData) => {

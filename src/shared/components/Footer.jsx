@@ -1,7 +1,5 @@
-import { ThemeContext, ThemeProvider } from "@emotion/react";
 import React from "react";
-import { EONETFlex } from "../styled/EONETFlexContainer";
-import { H5, H6 } from "../styled/Headers";
+import { H6 } from "../styled/Headers";
 
 function Footer() {
     return (

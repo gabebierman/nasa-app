@@ -15,7 +15,6 @@ import { FlexContainerRow } from "../../shared/styled/FlexContainerRow";
 import { H2, H3 } from "../../shared/styled/Headers";
 import moment from "moment";
 import { removeFavorite, addFavorite } from "../../shared/redux/slices/favoritesSlice";
-import Footer from "../../shared/components/Footer";
 
 function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
     const date = useSelector((state) => state.date);
@@ -28,7 +27,6 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
     } = useGetEarthEventDataQuery(`${date}`);
     const {
         data: imageData,
-        error: imageDataError,
         isSuccess: imageDataSuccess,
         isLoading: imageLoading,
     } = useGetEarthImageDataQuery(`${date}`);
@@ -38,7 +36,6 @@ function EarthPage({ removeFavorite, addFavorite, favorites, id }) {
         isSuccess: neoSuccess,
         isLoading: neoLoading,
     } = useGetNearEarthObjectQuery(`${date}`);
-    let img_url;
 
     return (
         <>
